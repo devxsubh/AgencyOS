@@ -19,7 +19,7 @@ const Navbar = () => {
                             alt="Vetra logo"
                             width={24}
                             height={24}
-                            className="w-8"
+                            className="w-9"
                             />
                             <span className="text-xl font-semibold lg:block">
                                 Wonder

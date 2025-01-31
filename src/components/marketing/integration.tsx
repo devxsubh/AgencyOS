@@ -50,7 +50,7 @@ const Integration = () => {
     };
 
     return (
-        <div className="relative flex flex-col items-center justify-center w-full py-20 scale-">
+        <div className="container relative flex flex-col items-center justify-center w-full py-20 h-[1000Px]">
             <Container className="relative">
                 <div className="relative flex flex-col lg:hidden items-center justify-center overflow-visible">
                     <div className="absolute top-1/2 -translate-y-1/2 right-1/4 w-3/5 h-14 lg:h-20 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full -rotate-12 blur-[6.5rem] -z-10"></div>
@@ -86,7 +86,7 @@ const Integration = () => {
                 <div className="relative hidden lg:flex items-center justify-center overflow-visible">
                     <div className="absolute top-1/2 -translate-y-1/2 right-1/4 w-3/5 h-14 lg:h-20 bg-gradient-to-r from-[#C4EA00] to-[#C4EA00] rounded-full -rotate-12 blur-[6.5rem] -z-10"></div>
 
-                    <div className="relative flex h-dvh w-full flex-col items-center justify-center overflow-visible">
+                    <div className="relative flex h-dvh w-full flex-col items-center justify-center h-[800px]">
                         <Ripple />
                     </div>
 

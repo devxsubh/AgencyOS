@@ -1,150 +1,102 @@
-"use client"
+'use client'
 
-import { ClipboardCheck, Lightbulb, Rocket, LineChart } from "lucide-react"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { Lightbulb, ClipboardList, Rocket, LineChart } from 'lucide-react'
 
-export default function ServiceProcess() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
-
-  const services = [
+export default function ProcessSection() {
+  const steps = [
     {
       icon: Lightbulb,
-      title: "Discovery",
+      title: "DISCOVERY",
       description: "Understanding your goals and audience",
     },
     {
-      icon: ClipboardCheck,
-      title: "Strategy",
+      icon: ClipboardList,
+      title: "STRATEGY",
       description: "Developing a tailored plan",
     },
     {
       icon: Rocket,
-      title: "Execution",
+      title: "EXECUTION",
       description: "Delivering innovative solutions with precision",
     },
     {
       icon: LineChart,
-      title: "Optimization",
+      title: "OPTIMIZATION",
       description: "Continuously improving for better results",
     },
   ]
 
   return (
-    <div className="container mx-auto px-4 py-16 max-w-7xl mt-12">
-      {/* Header Section */}
-      <motion.div
-        className="text-center mb-16 space-y-4"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.h2
-          className="text-sm uppercase tracking-wider text-white/70"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+    <section className="bg-background text-foreground py-24 px-4">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
         >
-          Our Process
-        </motion.h2>
-        <motion.h1
-          className="text-3xl md:text-4xl font-samibold text-white tracking-tight"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          From Concept to Execution, We've Got You Covered
-        </motion.h1>
-      </motion.div>
+          <h2 className="text-muted-foreground text-sm font-medium tracking-wider mb-4">
+            OUR PROCESS
+          </h2>
+          <h3 className="text-2xl md:text-4xl lg:text-5xl font-medium leading-tight">
+            From Concept to Execution,
+            <br />
+            We&apos;ve Got You Covered
+          </h3>
+        </motion.div>
 
-      {/* Decorative Wave */}
-
-
-      {/* Service Grid */}
-      <motion.div
-        className="grid md:grid-cols-4 gap-8 md:gap-12 mt-12"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {services.map((service, index) => (
-          <motion.div
-            key={service.title}
-            className="text-center space-y-4 relative"
-            variants={itemVariants}
-            onHoverStart={() => setHoveredIndex(index)}
-            onHoverEnd={() => setHoveredIndex(null)}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          {steps.map((step, index) => (
             <motion.div
-              className="flex justify-center"
-              animate={{
-                rotate: hoveredIndex === index ? [0, -10, 10, -10, 0] : 0,
-              }}
-              transition={{ duration: 0.5 }}
+              key={step.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="relative"
             >
-              <div className="p-3 rounded-full bg-[#C4EA00]/10 relative overflow-hidden group">
-                <motion.div
-                  className="absolute inset-0 bg-[#C4EA00]/20"
-                  initial={{ scale: 0 }}
-                  animate={{
-                    scale: hoveredIndex === index ? 1 : 0,
-                    opacity: hoveredIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-                <service.icon className="w-8 h-8 text-[#C4EA00] relative z-10" />
-              </div>
-            </motion.div>
-            <motion.h3
-              className="text-xl font-semibold text-white uppercase tracking-wide"
-              animate={{
-                scale: hoveredIndex === index ? 1.1 : 1,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              {service.title}
-            </motion.h3>
-            <p className="text-white/70 leading-relaxed">{service.description}</p>
-            {hoveredIndex === index && (
+              {/* Connecting line */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-14 left-[60%] w-[calc(100%-20px)] h-[2px] bg-muted overflow-hidden">
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: index * 0.3 }}
+                    className="h-full w-full bg-[#c4ea00] origin-left"
+                  />
+                </div>
+              )}
+
+              {/* Step content */}
               <motion.div
-                className="absolute inset-0 -z-10 rounded-xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  background: "radial-gradient(circle at center, rgba(11,59,117,0.05) 0%, transparent 70%)",
-                }}
-              />
-            )}
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
+                whileHover={{ scale: 1.05 }}
+                className="flex flex-col items-center text-center relative z-10"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="w-20 md:w-28 h-20 md:h-28 rounded-full bg-muted flex items-center justify-center mb-6 relative group"
+                >
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <step.icon className="w-8 h-8 text-primary transition-colors duration-300" />
+                </motion.div>
+                <motion.h4
+                  whileHover={{ color: "hsl(var(--primary))" }}
+                  className="text-xl font-bold mb-3 transition-colors"
+                >
+                  {step.title}
+                </motion.h4>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+                  {step.description}
+                </p>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 

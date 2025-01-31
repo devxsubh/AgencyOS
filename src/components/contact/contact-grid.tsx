@@ -1,11 +1,17 @@
+'use client'
+
+import { useState } from "react"
 import { MessageCircle, Building2, Locate, MessageCircleMore, Mail} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Container from "../global/container"
+import Link from "next/link"
 import { useIsMobile } from "@/hooks/use-mobile"
 
 export function ContactGrid() {
+  
   return (
+    <div>
     <div className="max-w-7xl mx-auto px-4 space-y-8">
       {/* Top Grid */}
       <Container delay={0.1 + 1 * 0.1} className="grid md:grid-cols-2 gap-6">
@@ -17,9 +23,12 @@ export function ContactGrid() {
               Get help from the community. If you're on a paid plan, submit a ticket to our support team.
             </p>
             <div className="flex items-center gap-4">
+            <Link href="/support" className="transition-all">
               <Button variant="secondary" className="bg-[#c4ea00] text-black hover:bg-zinc-200">
                 Get Support
               </Button>
+            </Link>  
+              
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 bg-green-500 rounded-full" />
                 <span className="text-sm text-zinc-400">All systems normal</span>
@@ -31,13 +40,15 @@ export function ContactGrid() {
         <Card className="bg-zinc-1000 border-zinc-800">
           <CardContent className="p-8">
             <Building2 className="h-8 w-8 mb-6" />
-            <h2 className="text-2xl font-semibold mb-4">Talk to our Sales team.</h2>
+            <h2 className="text-2xl font-semibold mb-4">Talk to our Expert's</h2>
             <p className="text-zinc-400 mb-6">
               Discuss your requirements, learn about custom pricing, or request a demonstration.
             </p>
-            <Button variant="secondary" className="bg-[#c4ea00] text-black hover:bg-zinc-200">
+            <Link href="/contact-us" className="transition-all">
+            <Button variant="secondary" className="bg-[#c4ea00] text-black hover:bg-zinc-200" >
               Contact sales
             </Button>
+            </Link>
           </CardContent>
         </Card>
       </Container>
@@ -49,9 +60,11 @@ export function ContactGrid() {
             <Mail className="h-8 w-8 mb-6" />
             <h2 className="text-xl font-semibold mb-2">For any enquiry.</h2>
             <p className="text-zinc-400 mb-6">Email us support@wondercreativestudios.com Contact us +91 6362765811</p>
+            {/* <Link href="https://support@wondercreativestudios.com" className="transition-all"> */}
             <Button variant="outline" className="border-zinc-800 hover:bg-zinc-800">
               Find an Expert
             </Button>
+            {/* </Link> */}
           </CardContent>
         </Card>
 
@@ -60,9 +73,11 @@ export function ContactGrid() {
             <Locate className="h-8 w-8 mb-6" />
             <h2 className="text-xl font-semibold mb-2">Company Location</h2>
             <p className="text-zinc-400 mb-6">South Bengaluru, Karnataka (560099)</p>
+            <Link href="https://www.instagram.com/wondercreativestudio9/" className="transition-all">
             <Button variant="outline" className="border-zinc-800 hover:bg-zinc-800">
               Follow @wondercreative.studio
             </Button>
+            </Link>
           </CardContent>
         </Card>
 
@@ -91,16 +106,21 @@ export function ContactGrid() {
             </p>
           </div>
           <div className="flex flex-wrap gap-4">
+          <Link href="/leadform" className="transition-all">
             <Button variant="secondary" className="bg-[#c4ea00] text-black hover:bg-zinc-200">
               Start Now
             </Button>
+          </Link>
+          <Link href="/contact-us" className="transition-all">
             <Button variant="outline" className="border-zinc-800 hover:bg-zinc-800">
               Contact Sales
             </Button>
+          </Link>
           </div>
         </CardContent>
       </Card>
       </Container>
+    </div>
     </div>
   )
 }

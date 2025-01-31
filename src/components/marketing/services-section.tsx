@@ -101,16 +101,7 @@ export default function ServicesSection() {
 //   )
 
   return (
-    <section className="min-h-screen text-white py-20 px-4 md:px-8 lg:px-12 overflow-hidden relative">
-      {/* <motion.div
-        className="fixed inset-0 bg-black/50 backdrop-blur-[20px] z-10 pointer-events-none"
-        style={{
-          opacity: hoveredService ? 1 : 0,
-          backdropFilter: `blur(${blurIntensity}px)`,
-        }}
-        transition={{ duration: 0.3 }}
-      /> */}
-      
+    <section className="text-white py-20 overflow-hidden relative">
       <div className="max-w-6xl mx-auto relative" ref={containerRef}>
       <Container>
         <motion.h2

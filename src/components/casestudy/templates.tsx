@@ -98,6 +98,15 @@ const templates: Template[] = [
     link: "/images/project/MultiVendor.png",
   },
   {
+    title: "Food delivery app",
+    description: "Food delivery apps are third-party delivery services for restaurants",
+    image:
+      "/images/project/original-f8c9eb4b3cfa90e7584071bf8085c5e0.webp",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/original-f8c9eb4b3cfa90e7584071bf8085c5e0.webp",
+  },
+  {
     title: "Subham Portfolio",
     description: "A no code Framer portfolio website, Showcase you work",
     image:
@@ -152,8 +161,8 @@ const templates: Template[] = [
     link: "https://ddesigno-frontend.vercel.app/",
   },
   {
-    title: "Logitech",
-    description: "Furniture e-commerce and interior service provider",
+    title: "Logitech Product Poster",
+    description: "High-impact poster showcasing product features",
     image:
       "/images/project/Logitech rally bar poster.png",
     author: "Wonder",
@@ -161,8 +170,8 @@ const templates: Template[] = [
     link: "/images/project/Logitech rally bar poster.png",
   },
   {
-    title: "Curo",
-    description: "Furniture e-commerce and interior service provider",
+    title: "Curo Natural Product Branding",
+    description: "Premium packaging and label design",
     image:
       "/images/project/curo.png",
     author: "Wonder",
@@ -170,8 +179,8 @@ const templates: Template[] = [
     link: "/images/project/curo.png",
   },
   {
-    title: "10K Generated NFT",
-    description: "Furniture e-commerce and interior service provider",
+    title: "CrypG – NFT Project",
+    description: "Exclusive digital art NFT collection",
     image:
       "/images/project/NFT1.png",
     author: "Wonder",
@@ -179,8 +188,8 @@ const templates: Template[] = [
     link: "/images/project/NFT1.png",
   },
   {
-    title: "Customized NFT",
-    description: "Furniture e-commerce and interior service provider",
+    title: "Monkey NFT Collection",
+    description: "Unique and engaging monkey-themed NFTs",
     image:
       "/images/project/NFT2.png",
     author: "Wonder",
@@ -188,8 +197,8 @@ const templates: Template[] = [
     link: "/images/project/NFT2.png",
   },
   {
-    title: "Davie Jones NFT",
-    description: "Furniture e-commerce and interior service provider",
+    title: "David Jones CHC NFT",
+    description: "Luxury NFT collection for digital assets",
     image:
       "/images/project/davie-jones'.jpg",
     author: "Wonder",
@@ -198,7 +207,7 @@ const templates: Template[] = [
   },
   {
     title: "Nibble",
-    description: "Furniture e-commerce and interior service provider",
+    description: "Irresistible and elegant chocolate packaging",
     image:
       "/images/project/nibble ip.jpg",
     author: "Wonder",
@@ -206,8 +215,8 @@ const templates: Template[] = [
     link: "/images/project/nibble ip.jpg",
   },
   {
-    title: "Nibble Package",
-    description: "Furniture e-commerce and interior service provider",
+    title: "Nibble Packaging Design",
+    description: "Irresistible and elegant chocolate packaging",
     image:
       "/images/project/nibblepackage.png",
     author: "Wonder",
@@ -215,8 +224,8 @@ const templates: Template[] = [
     link: "/images/project/nibblepackage.png",
   },
   {
-    title: "NFT Work",
-    description: "Furniture e-commerce and interior service provider",
+    title: "Women of Solana – NFT",
+    description: "Empowering women-focused NFT collection",
     image:
       "/images/project/NFT3.png",
     author: "Wonder",
@@ -225,12 +234,12 @@ const templates: Template[] = [
   },
   {
     title: "Bank Of America Brochure",
-    description: "Furniture e-commerce and interior service provider",
+    description: "Corporate brochure showcasing financial services",
     image:
-      "/images/project/bankofamericabrochure.jpg",
+      "/images/project/bank of america.jpg",
     author: "Wonder",
     categories: ["branding"],
-    link: "/images/project/bankofamericabrochure.jpg",
+    link: "/images/project/bank of america.jpg",
   },
   {
     title: "Momowries 2nd Edition",
@@ -240,6 +249,69 @@ const templates: Template[] = [
     author: "Wonder",
     categories: ["branding"],
     link: "https://memow-new.vercel.app/",
+  },
+  {
+    title: "Raw Canvas Branding Kit",
+    description: "Complete Identity Pack for Bold Brands",
+    image:
+      "/images/project/raw-canvas-logoo-vol-3.jpg",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/raw-canvas-logoo-vol-3.jpg",
+  },
+  {
+    title: "AUM SMMA Mood board",
+    description: "Minimal & Aesthetic Social Media Branding",
+    image:
+      "/images/project/aum-smma-presentation.jpg",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/aum-smma-presentation.jpg",
+  },  
+  {
+    title: "Voyage Verse Brochure Cover",
+    description: "Elegant & Modern Travel Brochure Design",
+    image:
+      "/images/project/Voyage Verse Brochure Cover.png",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/Voyage Verse Brochure Cover.png",
+  },
+  {
+    title: "23rd Jan Social Media Post",
+    description: "Engaging & Timely Social Media Creative",
+    image:
+      "/images/project/indecorus-23-rd-jan.jpg",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/indecorus-23-rd-jan.jpg",
+  },
+  {
+    title: "Magazine Cover Design",
+    description: "Striking & Trendy Cover for Publications",
+    image:
+      "/images/project/COVER-DESIGN.png",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/COVER-DESIGN.png",
+  },
+  {
+    title: "Unbottle SMMA Carousel",
+    description: "Creative Multi-Slide Instagram Ad Design",
+    image:
+      "/images/project/unbottle.jpg",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/unbottle.jpg",
+  },
+  {
+    title: "A Fashion SMMA Moodboard",
+    description: "Chic & Trendy Fashion Brand Visuals",
+    image:
+      "/images/project/fashion poster.png",
+    author: "Wonder",
+    categories: ["branding"],
+    link: "/images/project/fashion poster.png",
   },
 ]
 

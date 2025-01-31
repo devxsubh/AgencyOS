@@ -37,22 +37,22 @@ const Footer = () => {
                                 </h3>
                                 <ul className="mt-4 text-sm text-muted-foreground space-y-4">
                                     <li>
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
+                                        <Link href="/leadform" className="link hover:text-foreground transition-all duration-300">
                                             Marketing
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
+                                        <Link href="/leadform" className="link hover:text-foreground transition-all duration-300">
                                             Website & App
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
+                                        <Link href="/leadform" className="link hover:text-foreground transition-all duration-300">
                                             Branding & Design
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="#" className="link hover:text-foreground transition-all duration-300">
+                                        <Link href="/leadform" className="link hover:text-foreground transition-all duration-300">
                                             Automated Business
                                         </Link>
                                     </li>

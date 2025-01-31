@@ -29,8 +29,8 @@ const MobileMenu = () => {
                         </Link>
                     ))}
                     <div className="pt-4 mt-4 border-t border-border">
-                        <Link href="#" className="w-full">
-                            <Button className="w-full bg-[#C4EA00] text-gray-700" variant="blue">
+                        <Link href="/leadform" className="w-full">
+                            <Button className="w-full bg-[#C4EA00] hover:bg-white text-black text-gray-700" variant="blue">
                                 Get Started
                             </Button>
                         </Link>

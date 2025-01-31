@@ -11,7 +11,7 @@ interface TemplateCardProps {
 
 export function TemplateCard({ title, description, image, author }: TemplateCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-gray-700 bg-background transition-colors">
+    <div className="group relative overflow-hidden rounded-lg border border-gray-700 hover:border-foreground bg-background transition-colors">
       <div className="aspect-[2/1] relative">
         <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
       </div>

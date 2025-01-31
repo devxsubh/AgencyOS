@@ -41,7 +41,7 @@ const Hero = () => {
                 </Container>
 
                 <div className="flex flex-col items-center justify-center text-center gap-y-4 bg-background/0">
-                    <Container className="relative hidden lg:block overflow-hidden">
+                    <Container className="relative block overflow-hidden">
                         <button className="group relative grid overflow-hidden rounded-full px-2 py-1 shadow-[0_1000px_0_0_hsl(0_0%_15%)_inset] transition-colors duration-200 mx-auto">
                             <span>
                                 <span className="spark mask-gradient absolute inset-0 h-[100%] w-[100%] animate-flip overflow-hidden rounded-full [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:animate-rotate before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
@@ -51,23 +51,24 @@ const Hero = () => {
                                 <span className="px-2 py-[0.5px] h-[18px] tracking-wide flex items-center justify-center rounded-full bg-gradient-to-r from-[#C4EA00] to-[#dae6a1] text-[9px] font-medium mr-2 text-gray-700">
                                     NEW
                                 </span>
-                                Explore the 2024 recap
+                                Explore the 2025 recap
                             </span>
                         </button>
                     </Container>
                     <Container delay={0.15}>
                         <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold text-center !leading-tight max-w-4xl mx-auto">
-                           Transform Your Business, {" "}
+                        {/* Smart, Scalable & Sales-Driven – Digital Solutions That Work! */}
+                           Smart, Scalable & Sales-Driven {" "}
                            <br/>
                             <span className="">
-                             One Creative {" "}
+                            Digital Solutions {" "}
                             </span>
-                            Solution at a Time
+                            That Work's
                         </h1>
                     </Container>
                     <Container delay={0.2}>
                         <p className="max-w-xl mx-auto mt-2 text-base lg:text-base text-center text-muted-foreground">
-                        Empowering brands with cutting-edge technology, innovative strategies, and a personalized approach.
+                        Empowering brands with cutting-edge technology, innovative strategies, and a personalized approach
                         </p>
                     </Container>
                     <Container delay={0.25} className="z-20">

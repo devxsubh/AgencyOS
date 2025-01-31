@@ -6,15 +6,12 @@ import Features from "@/components/marketing/features";
 import Hero from "@/components/marketing/hero";
 import Integration from "@/components/marketing/integration";
 import LanguageSupport from "@/components/marketing/lang-support";
-import Pricing from "@/components/marketing/pricing";
-import ServicesSection from "@/components/marketing/services-section";
-import Automate from "@/components/marketing/automate";
-import { TextReveal } from "@/components/ui/text-reveal";
-import Testimonials from "@/components/marketing/testimonials";
+// import ServicesSection from "@/components/marketing/services-section";
 import { FAQ } from "@/components/marketing/FaqsSection";
-import ScrollReveal from "@/components/marketing/scroll-reveal";
 import AboutUs from "@/components/marketing/aboutus";
 import ServiceProcess from "@/components/marketing/service-process";
+import Reviews from "@/components/marketing/review";
+import ServicesSection from "@/components/marketing/offering";
 
 const HomePage = () => {
     return (
@@ -26,10 +23,8 @@ const HomePage = () => {
             <Features />
             <Analysis />
             <ServiceProcess/>
-            <Integration />
-            {/* <Pricing /> */}
-            
-            <Testimonials />
+            {/* <Integration /> */}
+            <Reviews/>
             <LanguageSupport />
             <CTA />
             <FAQ />

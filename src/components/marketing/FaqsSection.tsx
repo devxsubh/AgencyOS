@@ -8,10 +8,11 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import Container from "../global/container";
+import Link from "next/link";
 
 const faqData = [
   {
-    question: "What services does Wonder Creative Studio offer?",
+    question: "What services does we offer?",
     answer:
       "We specialize in website development, app development, digital marketing, branding, automation, and customer support. We also provide business development consultations and white-labeled solutions like GoHighLevel.",
   },
@@ -21,7 +22,7 @@ const faqData = [
       "We work with diverse industries, including real estate, healthcare, e-commerce, IT, education, and hospitality, offering tailored solutions for each sector.",
   },
   {
-    question: "How long does it take to develop a website?",
+    question: "How long does it take for development?",
     answer:
       "The timeline depends on the complexity of the project. A basic website may take 2-4 weeks, while custom or e-commerce websites could take 6-8 weeks.",
   },
@@ -41,17 +42,17 @@ const faqData = [
       "Absolutely! We specialize in creating unique brand identities, including logo design, UI/UX, and marketing collateral to establish a strong presence.",
   },
   {
-    question: "What is your GoHighLevel white-labeled solution?",
+    question: "What is your leadflow white-labeled solution?",
     answer:
-      "Our GoHighLevel white-labeled CRM offers automation for lead nurturing, email/WhatsApp campaigns, and client management to streamline your business processes.",
+      "Our leadflow white-labeled CRM offers automation for lead nurturing, email/WhatsApp campaigns, and client management to streamline your business processes.",
   },
   {
-    question: "Do you offer custom-coded websites or CMS-based solutions?",
+    question: "Do you offer custom-coded solutions?",
     answer:
       "Yes, we provide both custom-coded websites for unique needs and CMS-based solutions like WordPress, depending on your requirements and budget.",
   },
   {
-    question: "Do you offer maintenance and updates for the apps you develop?",
+    question: "Do you offer maintenance and updates?",
     answer:
       "Yes, we provide ongoing support, updates, and maintenance to ensure your app runs smoothly.",
   }
@@ -76,9 +77,11 @@ export const FAQ = () => (
               </p>
             </div>
             <div>
+              <Link href='/contact-us'>
               <Button className="gap-4 bg-[#c4ea00] text-gray-900" variant="outline">
                 Any questions? Reach out <PhoneCall className="w-4 h-4" />
               </Button>
+              </Link>
             </div>
           </div>
         </div>
