@@ -4,6 +4,7 @@ import { generateMetadata } from "@/utils";
 import { base, heading } from "@/constants";
 import { Toaster } from "@/components/ui/sonner";
 import { subheading } from "@/constants/fonts";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = generateMetadata();
 
@@ -14,6 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <GoogleAnalytics gaId="G-2SZ915LWJ5" />
             <body
                 className={cn(
                     "min-h-screen bg-background text-foreground antialiased font-heading overflow-x-hidden !scrollbar-hide",
