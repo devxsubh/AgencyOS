@@ -9,7 +9,7 @@ export const NAV_LINKS = [
     // },
     {
         name: "Portfolio",
-        href: "/casestudy"
+        href: "/portfolio"
     },
     {
         name: "Blog",

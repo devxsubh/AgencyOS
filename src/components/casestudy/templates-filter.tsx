@@ -15,7 +15,7 @@ export const useCategories = [
   { id: "website", label: "Website" },
   { id: "ui/ux", label: "UI/UX" },
   { id: "portfolio", label: "Portfolio" },
-  { id: "saas", label: "SaaS" },
+  { id: "nft", label: "NFT" },
   { id: "branding", label: "Branding" },
   { id: "ecommerce", label: "Ecommerce" },
   { id: "multi-tenant", label: "Multi-tenant apps" },
