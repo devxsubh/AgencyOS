@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <GoogleAnalytics gaId="G-2SZ915LWJ5" />
+            <GoogleAnalytics gaId="G-1B0PMWGJP2" />
             <body
                 className={cn(
                     "min-h-screen bg-background text-foreground antialiased font-heading overflow-x-hidden !scrollbar-hide",
