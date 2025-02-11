@@ -73,15 +73,6 @@ export const templates : Template[] = [
       link: "http://monk.com/",
     },
     {
-      title: "Social Media - Gifting App",
-      description: "A Unique Social Media app where you can gift",
-      image:
-        "/images/project/SocialGift.png",
-      author: "Wonder",
-      categories: ["ui/ux"],
-      link: "/images/project/SocialGift.png",
-    },
-    {
       title: "Multi Vendor App",
       description: "A multivendor marketplace is platform that empowers multiple vendors",
       image:
