@@ -14,7 +14,7 @@ const faqData = [
   {
     question: "What services does we offer?",
     answer:
-      "We specialize in website development, app development, digital marketing, branding, automation, and customer support. We also provide business development consultations and white-labeled solutions like GoHighLevel.",
+      "We specialize in website development, app development, digital marketing, branding, automation, and customer support. We also provide business development consultations and white-labeled solutions like Leadflow.",
   },
   {
     question: "What industries do you cater to?",
@@ -59,7 +59,7 @@ const faqData = [
 ];
 
 export const FAQ = () => (
-  <div className="w-full py-20 lg:py-20">
+  <div className="w-full py-12 lg:py-12">
     <div className="container mx-auto">
       <div className="grid lg:grid-cols-2 gap-10">
        <Container>
