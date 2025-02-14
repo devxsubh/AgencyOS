@@ -22,7 +22,7 @@ export const templates : Template[] = [
       title: "Monks.com",
       description: "Business pertfolio website",
       image:
-        "/images/project/Beyoung.png",
+        "/images/project/monks.png",
       author: "Wonder",
       categories: ["website","ecommerce"],
       link: "https://www.monks.com/",
