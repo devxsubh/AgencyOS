@@ -19,6 +19,15 @@ export const templates : Template[] = [
       link: "http://beyoung.in/",
     },
     {
+      title: "Monks.com",
+      description: "Business pertfolio website",
+      image:
+        "/images/project/Beyoung.png",
+      author: "Wonder",
+      categories: ["website","ecommerce"],
+      link: "https://www.monks.com/",
+    },
+    {
       title: "DDesigno.com",
       description: "Furniture e-commerce and interior service provider",
       image:
