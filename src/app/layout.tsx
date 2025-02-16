@@ -5,6 +5,7 @@ import { base, heading } from "@/constants";
 import { Toaster } from "@/components/ui/sonner";
 import { subheading } from "@/constants/fonts";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import MetaPixel from "@/components/meta/metapixel";
 
 export const metadata = generateMetadata();
 
@@ -15,6 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <MetaPixel />
             <GoogleAnalytics gaId="G-GEYE331BP3" />
             <body
                 className={cn(
