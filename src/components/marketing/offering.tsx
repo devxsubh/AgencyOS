@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion"
+import Link from "next/link"
+import { Button } from "../ui/button"
 import Container from "../global/container"
 interface Service {
   id: string
@@ -10,6 +12,7 @@ interface Service {
   image: string
   headline: string
   description: string
+  href: string
 }
 
 const services: Service[] = [
@@ -18,6 +21,7 @@ const services: Service[] = [
     number: "01",
     title: "Automation",
     image: "/images/Automated.avif",
+    href: "/automation",
     headline: "Create a Memorable Brand Identity",
     description:
       "We craft compelling brand identities that leave a lasting impression. From logo design to comprehensive brand guidelines, we ensure your brand stands out and connects with your audience",
@@ -27,6 +31,7 @@ const services: Service[] = [
     number: "02",
     title: "Branding",
     image: "/images/Branding.avif",
+    href: "/branding",
     headline: "Create a Memorable Brand Identity",
     description:
       "We craft compelling brand identities that leave a lasting impression. From logo design to comprehensive brand guidelines, we ensure your brand stands out and connects with your audience.",
@@ -36,6 +41,7 @@ const services: Service[] = [
     number: "03",
     title: "Marketing",
     image: "/images/Automated.avif",
+    href: "/marketing",
     headline: "Drive Results with Data-Driven Campaigns",
     description:
       "Our performance marketing solutions are designed to maximize ROI. Using targeted strategies and analytics-driven insights, we help you reach the right audience at the right time",
@@ -45,6 +51,7 @@ const services: Service[] = [
     number: "04",
     title: "Web & App",
     image: "/images/WebsiteApp.avif",
+    href: "/web-and-app",
     headline: "Build a Digital Experience That Stands Out",
     description:
       "Whether you need a website to showcase your brand or an app to engage your audience, we deliver high-performance digital solutions tailored to your goals [Custom-coded and CMS-based websites, Cross-platform mobile applications, Seamless user experiences with premium designs]",
@@ -54,6 +61,7 @@ const services: Service[] = [
     number: "05",
     title: "SEO Optimization",
     image: "/images/seo.avif",
+    href: "/seo",
     headline: "Rank Higher, Reach Further",
     description:
       "Get discovered by your audience with our SEO services. From on-page optimization to technical SEO and link building, we ensure your website ranks higher and attracts quality traffic",
@@ -63,6 +71,7 @@ const services: Service[] = [
     number: "06",
     title: "AI-Driven Sales",
     image: "/images/Ai.avif",
+    href: "/ai",
     headline: "Harness AI to Drive More Sales",
     description:
       "Leverage the power of AI to enhance your sales processes. Our solutions include predictive analytics, personalized outreach, and automated follow-ups, ensuring no opportunity is missed",
@@ -118,6 +127,7 @@ export default function ServicesSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
             >
+              <Link href={service.href}>
               <div className="flex items-start justify-between group">
                 <div className="space-y-4">
                   <span className="text-[#c4ea00] text-lg">{service.number}</span>
@@ -161,6 +171,7 @@ export default function ServicesSection() {
                   )}
                 </AnimatePresence>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>
