@@ -721,52 +721,6 @@ const { register, handleSubmit, watch } = useForm<FormData>();
        </div>
      </div>
    </div>
-   <div className="bg-dark text-white min-h-screen flex flex-col items-center py-10">
-      <h1 className="text-3xl font-bold text-primary mb-6">Website Cost Calculator</h1>
-      
-      <form onSubmit={handleSubmit(calculateCost)} className="bg-gray-900 p-6 rounded-lg shadow-lg max-w-md w-full">
-        {/* Number of Pages */}
-        <label className="block mb-2">Number of Pages:</label>
-        <select {...register("pages")} className="w-full p-2 mb-4 bg-gray-800 text-white rounded">
-          <option value="1-5">1-5</option>
-          <option value="5-10">5-10</option>
-          <option value="10+">10+</option>
-        </select>
-
-        {/* Design Type */}
-        <label className="block mb-2">Design Preference:</label>
-        <select {...register("design")} className="w-full p-2 mb-4 bg-gray-800 text-white rounded">
-          <option value="template">Template</option>
-          <option value="custom">Custom Design</option>
-        </select>
-
-        {/* E-commerce Feature */}
-        <label className="block mb-2">E-commerce Functionality:</label>
-        <select {...register("ecommerce")} className="w-full p-2 mb-4 bg-gray-800 text-white rounded">
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-
-        {/* SEO Optimization */}
-        <label className="block mb-2">SEO Optimization:</label>
-        <select {...register("seo")} className="w-full p-2 mb-4 bg-gray-800 text-white rounded">
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-
-        {/* Submit Button */}
-        <button type="submit" className="w-full bg-primary text-black p-2 rounded font-bold">
-          Calculate Cost
-        </button>
-      </form>
-
-      {/* Display Cost */}
-      {totalCost > 0 && (
-        <div className="mt-6 text-xl bg-gray-800 p-4 rounded">
-          Estimated Cost: <span className="text-primary">${totalCost}</span>
-        </div>
-      )}
-    </div>
     </div>
   );
 }
