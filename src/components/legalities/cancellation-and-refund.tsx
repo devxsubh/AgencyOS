@@ -72,7 +72,7 @@ export default function CancellationAndRefundPage() {
               <h2 className="text-2xl font-semibold text-[#C4EA00] pt-4">Contact Us for Cancellations or Refunds:</h2>
               <p className="text-muted-foreground">
                 Email us at{" "}
-                <a href="mailto:support@wondercreativestudios.com" className="text-primary text-[#c4e] hover:underline">
+                <a href="mailto:support@wondercreativestudios.com" className="text-[#C4EA00] hover:underline">
                   support@wondercreativestudios.com
                 </a>{" "}
                 with your project details and request.
