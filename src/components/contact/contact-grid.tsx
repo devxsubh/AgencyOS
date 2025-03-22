@@ -60,11 +60,11 @@ export function ContactGrid() {
             <Mail className="h-8 w-8 mb-6" />
             <h2 className="text-xl font-semibold mb-2">For any enquiry.</h2>
             <p className="text-zinc-400 mb-6">Email us support@wondercreativestudios.com Contact us +91 6362765811</p>
-            {/* <Link href="https://support@wondercreativestudios.com" className="transition-all"> */}
+            <Link href="/leadform" className="transition-all">
             <Button variant="outline" className="border-zinc-800 hover:bg-zinc-800">
               Find an Expert
             </Button>
-            {/* </Link> */}
+            </Link>
           </CardContent>
         </Card>
 
@@ -73,7 +73,7 @@ export function ContactGrid() {
             <Locate className="h-8 w-8 mb-6" />
             <h2 className="text-xl font-semibold mb-2">Company Location</h2>
             <p className="text-zinc-400 mb-6">South Bengaluru, Karnataka (560099)</p>
-            <Link href="https://www.instagram.com/wondercreativestudio9/" className="transition-all">
+            <Link href="https://www.instagram.com/wondercreative.studio/" className="transition-all">
             <Button variant="outline" className="border-zinc-800 hover:bg-zinc-800">
               Follow @wondercreative.studio
             </Button>

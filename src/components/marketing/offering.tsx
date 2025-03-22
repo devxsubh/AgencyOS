@@ -17,16 +17,6 @@ interface Service {
 
 const services: Service[] = [
   {
-    id: "ux",
-    number: "01",
-    title: "Automation",
-    image: "/images/Automated.avif",
-    href: "/automation",
-    headline: "Create a Memorable Brand Identity",
-    description:
-      "We craft compelling brand identities that leave a lasting impression. From logo design to comprehensive brand guidelines, we ensure your brand stands out and connects with your audience",
-  },
-  {
     id: "branding",
     number: "02",
     title: "Branding",
@@ -39,7 +29,7 @@ const services: Service[] = [
   {
     id: "marketing",
     number: "03",
-    title: "Marketing",
+    title: "Marketing and Automation",
     image: "/images/Automated.avif",
     href: "/marketing",
     headline: "Drive Results with Data-Driven Campaigns",
@@ -113,7 +103,7 @@ export default function ServicesSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Services we offer
+          Our Expertise
         </motion.h2>
 
         <div className="space-y-16">
