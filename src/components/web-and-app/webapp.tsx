@@ -13,6 +13,9 @@ import Container from "@/components/global/container";
 import { MagicCard } from '../ui/magic-card';
 import { Timeline } from '../ui/timeline';
 import { motion } from 'framer-motion';
+import { Connect } from './why_ choose_us';
+import { FeatureStepsDemo } from './Why';
+import { Feature } from './feature-with-advantages';
 
 function WebApp() {
   const plans = [
@@ -296,14 +299,14 @@ const { register, handleSubmit, watch } = useForm<FormData>();
 
   return (
     
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="bg-black text-white font-sans ">
       {/* Hero Section */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <div className="relative h-screen max-w-7xl bg- mx-auto flex flex-col items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute" />
           <div className="absolute -inset-x-40 -top-40 -bottom-40 [mask-image:radial-gradient(closest-side,white,transparent)] bg-[#c3ea00]/10" />
         </div>
-        <div className="flex flex-col items-center justify-center text-center gap-y-4 bg-background/0">
+        <div className="flex flex-col items-center justify-center text-center gap-y-4 bg-background/10">
           <Container className="relative block overflow-hidden">
             <button className="group relative grid overflow-hidden rounded-full px-2 py-1 shadow-[0_1000px_0_0_hsl(0_0%_15%)_inset] transition-colors duration-200 mx-auto">
               <span>
@@ -319,12 +322,12 @@ const { register, handleSubmit, watch } = useForm<FormData>();
             </button>
           </Container>
           <Container delay={0.15}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold !leading-tight max-w-4xl mx-auto">
-              Transform Your Vision into a Powerful Mobile App – Get a Custom Solution Today
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold !leading-tight max-w-6xl mx-auto">
+              Transform Your Vision into a Powerful App <br/> Get a Custom Solution Today
             </h1>
           </Container>
           <Container delay={0.2}>
-            <p className="max-w-xl mx-auto mt-2 text-base lg:text-lg text-center text-muted-foreground">
+            <p className="max-w-xl mx-auto mt-2 text-base lg:text-base text-center text-muted-foreground">
               Build high-performance, scalable, and AI-powered mobile applications tailored to your business needs.
             </p>
           </Container>
@@ -332,7 +335,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
             <div className="flex items-center justify-center mt-6 gap-x-4">
               <Link href="/leadform" className="flex items-center gap-2 group">
                 <Button size="lg" className="bg-[#C4EA00]">
-                  Get a Free App Development Consultation
+                  Get a Free Consultation
                 </Button>
               </Link>
             </div>
@@ -342,7 +345,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
 
    
     {/* Why choose us */}
-    <div className="py-20 border-t border-gray-800">
+    {/* <div className="py-20 bg-[#0a0a0a]">
       
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
@@ -378,10 +381,14 @@ const { register, handleSubmit, watch } = useForm<FormData>();
             </Link>
         </div>
       </Container>
-    </div>
+    </div> */}
+
+   <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
+    <FeatureStepsDemo/>
+   </div>
 
         {/* portfolio section */}
-    <div className="py-20 border-t border-gray-800">
+    <div className="py-20 bg-[#0a0a0a]">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-12">
       Our Expertise –
@@ -414,7 +421,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
         <div className="flex items-center justify-center mt-6 gap-x-4">
             <Link href="/leadform" className="flex items-center gap-2 group">
                 <Button size="lg" className="bg-[#C4EA00]">
-                See More Projects – Schedule a Free Demo Call
+                See More
                 </Button>
             </Link>
         </div>
@@ -424,7 +431,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
 
   {/* process timeline */}
 
-  <div className="py-20 bg-[#0a0a0a] relative overflow-hidden border-t border-gray-800">
+  <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <Timeline data={processSteps} />
   </div>
@@ -436,7 +443,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
 
       {/* Pricing Section */}
 
-      <div className="py-20 border-t border-black-800">
+      <div className="py-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -484,7 +491,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
       </div>
 
             {/* client */}
-            <div className="py-20 border-t border-gray-800 bg-[#0a0a0a] relative">
+            <div className="py-20 relative bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Section Title */}
         <motion.h2
@@ -570,7 +577,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
           <div className="flex items-center justify-center mt-6 gap-x-6">
             <Link href="/leadform" className="flex items-center gap-2 group">
               <Button size="lg" className="bg-[#C4EA00] text-black hover:bg-[#a4c800] transition-all">
-                See More – Schedule a Free Demo Call
+                Schedule Demo Call
               </Button>
             </Link>
             <Button
@@ -586,7 +593,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
     </div>
 
       {/* Industry Solutions Section */}
-      <div className="py-20 bg-[#0a0a0a] relative overflow-hidden border-t border-gray-800">
+      {/* <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -619,11 +626,24 @@ const { register, handleSubmit, watch } = useForm<FormData>();
             ))}
           </div>
         </div>
+      </div> */}
+
+
+      <div className="pt-20 px-4 bg-[#0a0a0a] relative overflow-hidden">
+      <Connect/>
+      </div>
+
+      <div className=" bg-[#0a0a0a] relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Feature />
+      </div>
       </div>
 
 
+
+
       {/* FAQ Section */}
-      <div className="py-20 bg-[#0a0a0a] relative overflow-hidden border-t border-gray-800">
+      <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-12 text-center">
           Frequently Asked <span className="text-[#c3ea00]">Questions</span>
@@ -651,7 +671,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
     </div>
 
       {/* Security Section */}
-       <div className="py-20 bg-[#0a0a0a] relative overflow-hidden border-t border-gray-800">
+       {/* <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-12">
@@ -680,10 +700,11 @@ const { register, handleSubmit, watch } = useForm<FormData>();
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
+    
       {/* Live Demo Section */}
-      <div className="py-20 bg-[#0a0a0a] relative overflow-hidden border-t border-gray-800">
+      <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
        <div className="text-center mb-16">
          <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-12">

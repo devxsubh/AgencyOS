@@ -34,7 +34,7 @@ export const Timeline: React.FC<TimelineProps> = ({ data }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div className="w-full bg-[#0a0a0a] font-sans md:px-10" ref={containerRef}>
+    <div className="w-full font-sans md:px-10" ref={containerRef}>
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
       <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
           Our Proven <span className="text-[#c3ea00]">6-Step App Development Process</span>
@@ -93,7 +93,7 @@ export const Timeline: React.FC<TimelineProps> = ({ data }) => {
             <div className="flex items-center justify-center mt-6 gap-x-4">
               <Link href="/leadform" className="flex items-center gap-2 group">
                 <Button size="lg" className="bg-[#C4EA00]">
-                Get a Personalized Development Plan – Book a Free Call
+                Get a Personalized Development Plan
                 </Button>
               </Link>
             </div>

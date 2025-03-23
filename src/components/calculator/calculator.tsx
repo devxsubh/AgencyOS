@@ -111,7 +111,7 @@ export default function Calculator() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto pt-20 pb-20">
       <Card className="bg-[#09090B] border-[#C3EA00]/20">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-[#C3EA00] flex items-center gap-2">

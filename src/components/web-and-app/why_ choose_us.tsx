@@ -1,0 +1,211 @@
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+import { cn } from "@/lib";
+import { DIcons } from "dicons";
+import { useAnimate } from "framer-motion";
+
+import { Button, buttonVariants } from "@/components/ui/button";
+
+import { HighlighterItem, HighlightGroup, Particles } from "@/components/ui/highlighter";
+import Image from "next/image";
+
+export function Connect() {
+  const [scope, animate] = useAnimate();
+
+  React.useEffect(() => {
+    animate(
+      [
+        ["#pointer", { left: 200, top: 60 }, { duration: 0 }],
+        ["#javascript", { opacity: 1 }, { duration: 0.3 }],
+        [
+          "#pointer",
+          { left: 50, top: 102 },
+          { at: "+0.5", duration: 0.5, ease: "easeInOut" },
+        ],
+        ["#javascript", { opacity: 0.4 }, { at: "-0.3", duration: 0.1 }],
+        ["#react-js", { opacity: 1 }, { duration: 0.3 }],
+        [
+          "#pointer",
+          { left: 224, top: 180 },
+          { at: "+0.5", duration: 0.5, ease: "easeInOut" },
+        ],
+        ["#react-js", { opacity: 0.4 }, { at: "-0.3", duration: 0.1 }],
+        ["#typescript", { opacity: 1 }, { duration: 0.3 }],
+        [
+          "#pointer",
+          { left: 88, top: 198 },
+          { at: "+0.5", duration: 0.5, ease: "easeInOut" },
+        ],
+        ["#typescript", { opacity: 0.4 }, { at: "-0.3", duration: 0.1 }],
+        ["#next-js", { opacity: 1 }, { duration: 0.3 }],
+        [
+          "#pointer",
+          { left: 260, top: 120 },
+          { at: "+0.5", duration: 0.5, ease: "easeInOut" },
+        ],
+        ["#next-js", { opacity: 0.4 }, { at: "-0.3", duration: 0.1 }],
+        ["#vite-js", { opacity: 1 }, { duration: 0.3 }],
+        [
+          "#pointer",
+          { left: 200, top: 60 },
+          { at: "+0.5", duration: 0.5, ease: "easeInOut" },
+        ],
+        ["#vite-js", { opacity: 0.4 }, { at: "-0.3", duration: 0.1 }],
+      ],
+      {
+        repeat: Number.POSITIVE_INFINITY,
+      },
+    );
+  }, [animate]);
+  return (
+    <section className="relative mx-auto mb-20 mt-6 max-w-5xl ">
+      <HighlightGroup className="group min-h-full">
+        <div
+          className="group/item h-full md:col-span-6 lg:col-span-12"
+          data-aos="fade-down"
+        >
+          <HighlighterItem className="rounded-3xl p-6">
+            <div className="relative z-20 h-full overflow-hidden rounded-3xl border border-slate-200 border-slate-800 bg-black">
+              <Particles
+                className="absolute inset-0 -z-10 opacity-10 transition-opacity duration-1000 ease-in-out group-hover/item:opacity-100"
+                quantity={200}
+                color={"#555555"}
+                vy={-0.2}
+              />
+              <div className="flex justify-center">
+                <div className="flex h-full flex-col justify-center gap-10 p-4 md:h-[300px] md:flex-row">
+                  <div
+                    className="relative mx-auto h-[270px] w-[300px] md:h-[270px] md:w-[300px]"
+                    ref={scope}
+                  >
+                    {/* <DIcons.Designali className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2" /> */}
+                    <Image
+                    src="/icons/icon.avif"
+                    alt="Vetra logo"
+                    width={24}
+                    height={24}
+                    className="absolute left-1/2 top-1/2 w-8 -translate-x-1/2 -translate-y-1/2"
+                    />
+                    <div
+                      id="node-js"
+                      className="absolute top-5 left-16 rounded-3xl border bg-slate-200 px-2 py-1.5 text-xs opacity-50 border-slate-600 bg-slate-800"
+                    >
+                      Healthcare
+                    </div>
+
+                    <div
+                      id="next-js"
+                      className="absolute bottom-12 left-15 rounded-3xl border bg-slate-200 px-2 py-1.5 text-xs opacity-50 border-slate-600 bg-slate-800"
+                    >
+                      Transportation
+                    </div>
+                    <div
+                      id="react-js"
+                      className="absolute left-0 top-20 rounded-3xl bg-slate-200 px-2 py-1.5 text-xs opacity-50 border-slate-600 bg-slate-800"
+                    >
+                      EdTech
+                    </div>
+                    <div
+                      id="typescript"
+                      className="absolute bottom-16 right-1 rounded-3xl border border-slate-400 bg-slate-200 px-2 py-1.5 text-xs opacity-50 border-slate-600 bg-slate-800"
+                    >
+                     E-Commerce
+                    </div>
+                    <div
+                      id="vite-js"
+                      className="absolute top-24 left-[80%] rounded-3xl border border-slate-400 bg-slate-200 px-2 py-1.5 text-xs opacity-50 border-slate-600 bg-slate-800"
+                    >
+                     PropTech
+                    </div>
+                    <div
+                      id="javascript"
+                      className="absolute right-12 top-10 rounded-3xl border border-slate-400 bg-slate-200 px-2 py-1.5 text-xs opacity-50 border-slate-600 bg-slate-800"
+                    >
+                      FinTech
+                    </div>
+
+                    <div id="pointer" className="absolute">
+                      <svg
+                        width="16.8"
+                        height="18.2"
+                        viewBox="0 0 12 13"
+                        className="fill-red-500"
+                        stroke="white"
+                        strokeWidth="1"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M12 5.50676L0 0L2.83818 13L6.30623 7.86537L12 5.50676V5.50676Z"
+                        />
+                      </svg>
+                      <span className="bg-ali relative -top-1 left-3 rounded-3xl px-2 py-1 text-xs text-white">
+                        Ali
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="-mt-20 flex h-full flex-col justify-center p-2 md:-mt-4 md:ml-10 md:w-[400px]">
+                    <div className="flex flex-col items-center">
+                      <h3 className="mt-6   pb-1 font-bold ">
+                        <span className="text-2xl md:text-4xl">
+                         Industry-Specific
+                         <span className="text-[#c3ea00]"> App Development</span>
+                        </span>
+                      </h3>
+                    </div>
+                    <p className="mb-4 text-slate-400">
+                      Feel free to reach out to me!
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Link
+                        href={"https://cal.com/aliimam/designali"}
+                        target="_blank"
+                      >
+                        <Button className="bg-[#C4EA00]">Book a call</Button>
+                      </Link>
+                      <Link
+                        href="mailto:contact@designali.in"
+                        target="_blank"
+                        className={cn(
+                          buttonVariants({
+                            variant: "outline",
+                            size: "icon",
+                          }),
+                        )}
+                      >
+                        <span className="flex items-center gap-1">
+                          <DIcons.Mail strokeWidth={1} className="h-5 w-5" />
+                        </span>
+                      </Link>
+                      <Link
+                        href="https://wa.me/917678432186"
+                        target="_blank"
+                        className={cn(
+                          buttonVariants({
+                            variant: "outline",
+                            size: "icon",
+                          }),
+                        )}
+                      >
+                        <span className="flex items-center gap-1">
+                          <DIcons.WhatsApp
+                            strokeWidth={1}
+                            className="h-4 w-4"
+                          />
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </HighlighterItem>
+        </div>
+      </HighlightGroup>
+    </section>
+  );
+};

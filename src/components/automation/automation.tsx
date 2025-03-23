@@ -14,6 +14,8 @@ import Container from "@/components/global/container";
 import Link from "next/link";
 import Image from "next/image";
 import { MagicCard } from '../ui/magic-card';
+import { Connect } from './Industry';
+import { FeatureStepsDemo } from './Why';
 
 function Automation() {
   const features = [
@@ -181,7 +183,7 @@ function Automation() {
     <div className="min-h-screen">
 
       {/* Hero Section */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <div className="relative h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex flex-col items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute" />
           <div className="absolute -inset-x-40 -top-40 -bottom-40 [mask-image:radial-gradient(closest-side,white,transparent)] bg-[#c3ea00]/10" />
@@ -202,7 +204,7 @@ function Automation() {
                         </button>
                     </Container>
                     <Container delay={0.15}>
-                        <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold text-center !leading-tight max-w-4xl mx-auto">
+                        <h1 className="text-3xl md:text-3xl lg:text-5xl font-bold text-center !leading-tight max-w-4xl mx-auto">
                         Automate, Optimize & Scale {" "}
                            <br/>
                             <span className="">
@@ -233,7 +235,7 @@ function Automation() {
       </div>
 
       {/* Features Section */}
-      <div className="py-20 border-t border-gray-800">
+      {/* <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -263,10 +265,16 @@ function Automation() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
+
+         <div className="py-10 bg-[#0a0a0a] relative overflow-hidden">
+          <FeatureStepsDemo/>
+         </div>
+      
+
 
       {/* Solutions Section */}
-      <div className="py-20 border-t border-gray-800 bg-[#0e0e10]/50">
+      <div className="py-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -299,7 +307,7 @@ function Automation() {
       </div>
 
       {/* Case Studies */}
-      <div className="py-20 border-t border-gray-800">
+      <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -376,7 +384,7 @@ function Automation() {
           </div>
         </div>
       </div> */}
-      <div className="py-20 border-t border-gray-800 bg-[#0e0e10]/50">
+      <div className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <h2 className="text-center text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-16">
@@ -421,7 +429,7 @@ function Automation() {
     </div>
 
       {/* Pricing Section */}
-      <div className="py-20 border-t border-gray-800">
+      <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -467,7 +475,7 @@ function Automation() {
       </div>
 
       {/* Industry Solutions */}
-      <div className="py-20 border-t border-gray-800">
+      {/* <div className="py-20 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
@@ -497,9 +505,15 @@ function Automation() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
+
+            <div className="py-20 px-4 bg-[#0a0a0a] relative overflow-hidden">
+            <Connect/>
+            </div>
+
+
       {/* Live Demo Section */}
-      <div className="py-20 border-t border-gray-800">
+      <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Heading */}

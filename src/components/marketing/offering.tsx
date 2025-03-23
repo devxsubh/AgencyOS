@@ -18,7 +18,7 @@ interface Service {
 const services: Service[] = [
   {
     id: "branding",
-    number: "02",
+    number: "01",
     title: "Branding",
     image: "/images/Branding.avif",
     href: "/branding",
@@ -28,17 +28,17 @@ const services: Service[] = [
   },
   {
     id: "marketing",
-    number: "03",
+    number: "02",
     title: "Marketing and Automation",
     image: "/images/Automated.avif",
-    href: "/marketing",
+    href: "/automation",
     headline: "Drive Results with Data-Driven Campaigns",
     description:
       "Our performance marketing solutions are designed to maximize ROI. Using targeted strategies and analytics-driven insights, we help you reach the right audience at the right time",
   },
   {
     id: "web",
-    number: "04",
+    number: "03",
     title: "Web & App",
     image: "/images/WebsiteApp.avif",
     href: "/web-and-app",
@@ -48,7 +48,7 @@ const services: Service[] = [
   },
   {
     id: "seo",
-    number: "05",
+    number: "04",
     title: "SEO Optimization",
     image: "/images/seo.avif",
     href: "/seo",
@@ -58,7 +58,7 @@ const services: Service[] = [
   },
   {
     id: "ai",
-    number: "06",
+    number: "05",
     title: "AI-Driven Sales",
     image: "/images/Ai.avif",
     href: "/ai",
