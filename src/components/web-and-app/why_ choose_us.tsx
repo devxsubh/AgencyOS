@@ -162,13 +162,13 @@ export function Connect() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Link
-                        href={"https://cal.com/aliimam/designali"}
+                        href='/contact-us'
                         target="_blank"
                       >
                         <Button className="bg-[#C4EA00]">Book a call</Button>
                       </Link>
                       <Link
-                        href="mailto:contact@designali.in"
+                        href="mailto:support@wondercreativestudios.com"
                         target="_blank"
                         className={cn(
                           buttonVariants({
@@ -182,7 +182,7 @@ export function Connect() {
                         </span>
                       </Link>
                       <Link
-                        href="https://wa.me/917678432186"
+                        href="https://wa.me/916362765811"
                         target="_blank"
                         className={cn(
                           buttonVariants({

@@ -954,11 +954,11 @@ export default function ProjectCostCalculator() {
                         </div>
                       </div>
 
-                      <div className="flex flex-col items-center">
+                      <div className="flex flex-col items-center ">
                         <canvas
                         //@ts-ignore
                         ref={chartRef} width="200" height="200" className="mb-4"></canvas>
-                        <div className="grid grid-cols-3 gap-2 w-full">
+                        <div className="grid grid-cols-3 gap-2 w-full ">
                           {Object.entries(breakdown)
                             .filter(([_, value]) => value > 0)
                             .map(([key, value], index) => (
