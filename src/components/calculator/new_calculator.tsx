@@ -30,75 +30,98 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 
-export default function ProjectCostCalculator() {
-  const [projectType, setProjectType] = useState("website")
-  const [pages, setPages] = useState("5")
-  const [designType, setDesignType] = useState("standard")
-  const [hostingType, setHostingType] = useState("standard")
-  const [supportDuration, setSupportDuration] = useState("3")
-  const [features, setFeatures] = useState({
-    ecommerce: false,
-    authentication: false,
-    payment: false,
-    crm: false,
-    chatbot: false,
-    api: false,
-  })
-  const [totalCost, setTotalCost] = useState(0)
-  const [breakdown, setBreakdown] = useState({
-    base: 0,
-    pages: 0,
-    design: 0,
-    features: 0,
-    hosting: 0,
-    support: 0,
-  })
-  const [progress, setProgress] = useState(0)
-  const [activeStep, setActiveStep] = useState(0)
-  const [showConfetti, setShowConfetti] = useState(false)
-  const chartRef = useRef(null)
+type FeaturesType = {
+    ecommerce: boolean;
+    authentication: boolean;
+    payment: boolean;
+    crm: boolean;
+    chatbot: boolean;
+    api: boolean;
+  };
 
-  const baseCosts = {
+type BreakdownType = {
+    base: number;
+    pages: number;
+    design: number;
+    features: number;
+    hosting: number;
+    support: number;
+  };
+
+export default function ProjectCostCalculator() {
+    const [projectType, setProjectType] = useState<string>("website");
+    const [pages, setPages] = useState<string>("5");
+    const [designType, setDesignType] = useState<string>("standard");
+    const [hostingType, setHostingType] = useState<string>("standard");
+    const [supportDuration, setSupportDuration] = useState<string>("3");
+    
+    const [features, setFeatures] = useState<FeaturesType>({
+      ecommerce: false,
+      authentication: false,
+      payment: false,
+      crm: false,
+      chatbot: false,
+      api: false,
+    });
+    
+    const [totalCost, setTotalCost] = useState<number>(0);
+    
+    const [breakdown, setBreakdown] = useState<BreakdownType>({
+      base: 0,
+      pages: 0,
+      design: 0,
+      features: 0,
+      hosting: 0,
+      support: 0,
+    });
+    
+    const [progress, setProgress] = useState<number>(0);
+    const [activeStep, setActiveStep] = useState<number>(0);
+    const [showConfetti, setShowConfetti] = useState<boolean>(false);
+    
+    const chartRef = useRef<HTMLDivElement | null>(null);
+
+  const baseCosts: Record<string, number> = {
     website: 200000,
     mobileApp: 250000,
     webApp: 300000,
-  }
-
-  const pageCosts = {
+  };
+  
+  const pageCosts: Record<string, number> = {
     "5": 0,
     "10": 50000,
     "15": 100000,
     "20": 150000,
     "25+": 200000,
-  }
-
-  const designCosts = {
+  };
+  
+  const designCosts: Record<string, number> = {
     standard: 0,
     premium: 100000,
     custom: 200000,
-  }
-
-  const featureCosts = {
+  };
+  
+  const featureCosts: Record<string, number> = {
     ecommerce: 70000,
     authentication: 40000,
     payment: 50000,
     crm: 60000,
     chatbot: 75000,
     api: 65000,
-  }
-
-  const hostingCosts = {
+  };
+  
+  const hostingCosts: Record<string, number> = {
     standard: 20000,
     premium: 50000,
     enterprise: 100000,
-  }
-
-  const supportCosts = {
+  };
+  
+  const supportCosts: Record<string, number> = {
     "3": 30000,
     "6": 50000,
     "12": 90000,
-  }
-
+  };
+  
   useEffect(() => {
     // Calculate base cost
     const base = baseCosts[projectType]
@@ -112,6 +135,7 @@ export default function ProjectCostCalculator() {
     // Calculate features cost
     let featuresCost = 0
     Object.keys(features).forEach((feature) => {
+       //@ts-ignore
       if (features[feature]) {
         featuresCost += featureCosts[feature]
       }
@@ -162,8 +186,11 @@ export default function ProjectCostCalculator() {
   const updateChart = () => {
     if (!chartRef.current) return
 
+    //@ts-ignore
     const ctx = chartRef.current.getContext("2d")
+    //@ts-ignore
     const width = chartRef.current.width
+    //@ts-ignore
     const height = chartRef.current.height
 
     // Clear canvas
@@ -211,25 +238,28 @@ export default function ProjectCostCalculator() {
       ctx.fill()
     }
   }
-
-  const handleFeatureChange = (feature) => {
+  
+  const handleFeatureChange = (feature: string) => {
     setFeatures((prev) => ({
       ...prev,
+      //@ts-ignore
       [feature]: !prev[feature],
     }))
 
     // Show confetti animation when a feature is selected
+    //@ts-ignore
     if (!features[feature]) {
       setShowConfetti(true)
       setTimeout(() => setShowConfetti(false), 2000)
     }
   }
 
-  const formatCurrency = (amount) => {
+  const formatCurrency = (amount: string | number | bigint) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
       currency: "INR",
       maximumFractionDigits: 0,
+      //@ts-ignore
     }).format(amount)
   }
 
@@ -925,7 +955,9 @@ export default function ProjectCostCalculator() {
                       </div>
 
                       <div className="flex flex-col items-center">
-                        <canvas ref={chartRef} width="200" height="200" className="mb-4"></canvas>
+                        <canvas
+                        //@ts-ignore
+                        ref={chartRef} width="200" height="200" className="mb-4"></canvas>
                         <div className="grid grid-cols-3 gap-2 w-full">
                           {Object.entries(breakdown)
                             .filter(([_, value]) => value > 0)
