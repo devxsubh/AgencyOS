@@ -18,5 +18,4 @@ const MarketingLayout = ({ children }: Props) => {
     );
 };
 
-
 export default MarketingLayout
