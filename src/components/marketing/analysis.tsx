@@ -47,14 +47,14 @@ const Analysis = () => {
                                                 +25% from last month
                                             </div>
                                         </div>
-                                        <div className="flex gap-2">
+                                        {/* <div className="flex gap-2">
                                             <Button size="icon" variant="ghost">
                                                 <FilterIcon className="w-5 h-5" />
                                             </Button>
                                             <Button size="icon" variant="ghost">
                                                 <DownloadIcon className="w-5 h-5" />
                                             </Button>
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     <div className="space-y-2">
@@ -109,14 +109,14 @@ const Analysis = () => {
                                                 +12% engagement rate
                                             </div>
                                         </div>
-                                        <div className="flex gap-2">
+                                        {/* <div className="flex gap-2">
                                             <Button size="icon" variant="ghost">
                                                 <FilterIcon className="w-5 h-5" />
                                             </Button>
                                             <Button size="icon" variant="ghost">
                                                 <DownloadIcon className="w-5 h-5" />
                                             </Button>
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     {/* Audience Table */}
