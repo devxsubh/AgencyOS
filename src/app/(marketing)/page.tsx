@@ -4,9 +4,7 @@ import Companies from "@/components/marketing/companies";
 import CTA from "@/components/marketing/cta";
 import Features from "@/components/marketing/features";
 import Hero from "@/components/marketing/hero";
-import Integration from "@/components/marketing/integration";
 import LanguageSupport from "@/components/marketing/lang-support";
-// import ServicesSection from "@/components/marketing/services-section";
 import { FAQ } from "@/components/marketing/FaqsSection";
 import AboutUs from "@/components/marketing/aboutus";
 import ServiceProcess from "@/components/marketing/service-process";
@@ -23,7 +21,6 @@ const HomePage = () => {
             <Features />
             <Analysis />
             <ServiceProcess/>
-            {/* <Integration /> */}
             <Reviews/>
             <LanguageSupport />
             <CTA />
