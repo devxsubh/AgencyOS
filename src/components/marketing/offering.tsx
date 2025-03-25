@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motio
 import Link from "next/link"
 import { Button } from "../ui/button"
 import Container from "../global/container"
+import { InteractiveHoverButton } from "../ui/interactive-hover-button"
 interface Service {
   id: string
   number: string
@@ -17,18 +18,8 @@ interface Service {
 
 const services: Service[] = [
   {
-    id: "branding",
-    number: "01",
-    title: "Branding",
-    image: "/images/Branding.avif",
-    href: "/branding",
-    headline: "Create a Memorable Brand Identity",
-    description:
-      "We craft compelling brand identities that leave a lasting impression. From logo design to comprehensive brand guidelines, we ensure your brand stands out and connects with your audience.",
-  },
-  {
     id: "marketing",
-    number: "02",
+    number: "01",
     title: "Marketing and Automation",
     image: "/images/Automated.avif",
     href: "/automation",
@@ -38,8 +29,8 @@ const services: Service[] = [
   },
   {
     id: "web",
-    number: "03",
-    title: "Web & App",
+    number: "02",
+    title: "Web & App Devlopment",
     image: "/images/WebsiteApp.avif",
     href: "/web-and-app",
     headline: "Build a Digital Experience That Stands Out",
@@ -47,24 +38,34 @@ const services: Service[] = [
       "Whether you need a website to showcase your brand or an app to engage your audience, we deliver high-performance digital solutions tailored to your goals [Custom-coded and CMS-based websites, Cross-platform mobile applications, Seamless user experiences with premium designs]",
   },
   {
-    id: "seo",
-    number: "04",
-    title: "SEO Optimization",
-    image: "/images/seo.avif",
-    href: "/seo",
-    headline: "Rank Higher, Reach Further",
+    id: "branding",
+    number: "03",
+    title: "Branding",
+    image: "/images/Branding.avif",
+    href: "/branding",
+    headline: "Create a Memorable Brand Identity",
     description:
-      "Get discovered by your audience with our SEO services. From on-page optimization to technical SEO and link building, we ensure your website ranks higher and attracts quality traffic",
+      "We craft compelling brand identities that leave a lasting impression. From logo design to comprehensive brand guidelines, we ensure your brand stands out and connects with your audience.",
   },
   {
     id: "ai",
-    number: "05",
+    number: "04",
     title: "AI-Driven Sales",
     image: "/images/Ai.avif",
     href: "/ai",
     headline: "Harness AI to Drive More Sales",
     description:
       "Leverage the power of AI to enhance your sales processes. Our solutions include predictive analytics, personalized outreach, and automated follow-ups, ensuring no opportunity is missed",
+  },
+  {
+    id: "seo",
+    number: "05",
+    title: "SEO Optimization",
+    image: "/images/seo.avif",
+    href: "/seo",
+    headline: "Rank Higher, Reach Further",
+    description:
+      "Get discovered by your audience with our SEO services. From on-page optimization to technical SEO and link building, we ensure your website ranks higher and attracts quality traffic",
   },
   
 ]
@@ -115,9 +116,9 @@ export default function ServicesSection() {
               onMouseLeave={() => setHoveredService(null)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.5 }}
             >
-              <Link href={service.href}>
+
               <div className="flex items-start justify-between group">
                 <div className="space-y-4">
                   <span className="text-[#c4ea00] text-lg">{service.number}</span>
@@ -131,11 +132,16 @@ export default function ServicesSection() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.5 }}
                         className="max-w-xl"
                       >
                         <h4 className="text-xl font-medium mb-2 text-zinc-200">{service.headline}</h4>
                         <p className="text-zinc-400">{service.description}</p>
+                        <Link href={service.href}>
+                        <div className="relative justify-center pt-4">
+                          <InteractiveHoverButton text="Explore" />
+                        </div>
+                        </Link>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -155,13 +161,12 @@ export default function ServicesSection() {
                         alt={service.title}
                         className="w-full h-full object-cover"
                         whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.5 }}
                       />
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-              </Link>
             </motion.div>
           ))}
         </div>
