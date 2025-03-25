@@ -30,7 +30,7 @@ const services: Service[] = [
   {
     id: "web",
     number: "02",
-    title: "Web & App Devlopment",
+    title: "Web & App Development",
     image: "/images/WebsiteApp.avif",
     href: "/web-and-app",
     headline: "Build a Digital Experience That Stands Out",
