@@ -85,7 +85,7 @@ export const SUPPORTED_LANGUAGES = [
         code: "fi"
     },
     {
-        name: "Figam",
+        name: "Figma",
         icon: "/images/coding/figma.png",
         code: "figma"
     },
