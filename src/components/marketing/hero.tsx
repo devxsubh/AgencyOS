@@ -5,6 +5,7 @@ import Container from "../global/container";
 import Icons from "../global/icons";
 import { Button } from "../ui/button";
 import { OrbitingCircles } from "../ui/orbiting-circles";
+import { Cursor } from "../ui/cursor";
 
 const Hero = () => {
     return (
@@ -42,7 +43,34 @@ const Hero = () => {
 
                 <div className="flex flex-col items-center justify-center text-center gap-y-4 bg-background/0">
                     <Container className="relative block overflow-hidden">
-                        <Link href='/portfolio'>
+                    <Cursor
+                      attachToParent
+                      variants={{
+                        initial: { height: 0, opacity: 0, scale: 0.3 },
+                        animate: { height: "auto", opacity: 1, scale: 1 },
+                        exit: { height: 0, opacity: 0, scale: 0.3 },
+                      }}
+                      transition={{
+                        type: "spring",
+                        duration: 0.3,
+                        bounce: 0.1,
+                      }}
+                      className="overflow-hidden"
+                      springConfig={{
+                        bounce: 0.01,
+                      }}
+                    >
+                       <video
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-[400px] h-auto rounded-[25px] bg-transparent"
+                        >
+                          <source src="/icons/App Intro Show Reel.mp4" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                    </Cursor>
                         <button className="group relative grid overflow-hidden rounded-full px-2 py-1 shadow-[0_1000px_0_0_hsl(0_0%_15%)_inset] transition-colors duration-200 mx-auto">
                             <span>
                                 <span className="spark mask-gradient absolute inset-0 h-[100%] w-[100%] animate-flip overflow-hidden rounded-full [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:animate-rotate before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
@@ -55,7 +83,6 @@ const Hero = () => {
                                 Explore the 2024 recap
                             </span>
                         </button>
-                        </Link>
                     </Container>
                     <Container delay={0.15}>
                         <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold text-center !leading-tight max-w-4xl mx-auto">

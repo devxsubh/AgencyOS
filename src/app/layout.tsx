@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { subheading } from "@/constants/fonts";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import MetaPixel from "@/components/meta/metapixel";
+import { AuthProvider } from '../contexts/AuthContext';
 
 export const metadata = generateMetadata();
 
@@ -27,7 +28,9 @@ export default function RootLayout({
                 )}
             >
                     <Toaster richColors theme="dark" position="top-right" />
+                    <AuthProvider>
                     {children}
+                    </AuthProvider>
             </body>
         </html>
     );

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Rocket, CheckCircle2, Smartphone, Globe, Cog, ShoppingCart, MessageCircle, Shield, Users, BarChart4,
   Book, Building2, Car, Video, Lock, Briefcase, GraduationCap,
@@ -16,6 +16,24 @@ import { motion } from 'framer-motion';
 import { Connect } from './why_ choose_us';
 import { FeatureStepsDemo } from './Why';
 import { Feature } from './feature-with-advantages';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { PhoneCall } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import AppDemoSection from './app-demo-section';
+
+// Add Price type definition
+type Price = {
+  serviceType: string;
+  price: string;
+  name: string;
+  description: string;
+  features: string[];
+};
 
 function WebApp() {
   const plans = [
@@ -60,50 +78,29 @@ function WebApp() {
       image: '/images/home-services-ui.webp', 
     },
   ];
-  const pricingPlans = [
-    {
-      name: "Basic",
-      price: "₹1,99,999",
-      description: "Startups & small businesses needing a simple online presence",
-      features: [
-        "Pre-designed UI templates",
-        "Static website / MVP mobile app",
-        "Basic SEO",
-        "Shared Hosting",
-        "3-Months Support",
-        "No automation"
-      ],
-      bestFor: "Small Businesses, Landing Pages"
-    },
-    {
-      name: "Growth",
-      price: "₹4,49,999",
-      description: "Mid-size businesses looking for scalability & custom integrations",
-      features: [
-        "Custom UI/UX Design",
-        "Dynamic website/app with APIs",
-        "Advanced SEO & Speed Optimization",
-        "VPS Hosting with SSL",
-        "6-Months Support",
-        "CRM & API Integrations"
-      ],
-      bestFor: "Growth-Focused Brands"
-    },
-    {
-      name: "Elite",
-      price: "₹5,49,999",
-      description: "Enterprises & brands needing a fully automated, high-converting app or website",
-      features: [
-        "AI-Powered UX with premium animations & motion design",
-        "AI-driven app with automation & backend scalability",
-        "AI-Based Performance & Conversion Optimization",
-        "Cloud Hosting (AWS/Google Cloud) with CDN & Advanced Security",
-        "12-Months Support + AI Monitoring",
-        "AI Automation, Chatbots, Personalization Engine"
-      ],
-      bestFor: "Enterprises, SaaS, E-commerce"
+  
+const [pricingPlans, setPricingPlans] = useState<Price[]>([]);
+
+useEffect(() => {
+  const fetchPricingPlans = async () => {
+    try {
+      const response = await fetch('/api/prices');
+      const data = await response.json();
+      setPricingPlans(data.prices
+        .filter((data: Price) => data.serviceType === 'webapp')
+        .sort((a: Price, b: Price) => {
+          const priceA = Number(a.price.replace(/[^\d]/g, ""));
+          const priceB = Number(b.price.replace(/[^\d]/g, ""));
+          return priceA - priceB;
+        })
+      );
+    } catch (error) {
+      console.error('Error fetching pricing plans:', error);
     }
-  ];
+  };
+
+  fetchPricingPlans();
+}, []);
   
 
 
@@ -255,7 +252,7 @@ function WebApp() {
   ];
   
 
-const faqs = [
+const faqData = [
   {
     question: "How long does it take to develop a mobile app?",
     answer: "Typically 3-6 months depending on complexity. We follow an agile development approach to ensure efficient delivery while maintaining high quality."
@@ -476,13 +473,12 @@ const { register, handleSubmit, watch } = useForm<FormData>();
                     ))}
                   </ul>
                   <Container delay={0.25} className="z-20">
-            <div className="flex items-center justify-center mt-6 gap-x-4">
-                <Button size="lg" className="bg-[#C4EA00]">
-                Choose {plan.name}
-                </Button>
-            </div>
-          </Container>
-                  
+                    <div className="flex items-center justify-center mt-6 gap-x-4">
+                        <Button size="lg" className="bg-[#C4EA00]">
+                        Choose {plan.name}
+                        </Button>
+                    </div>
+                  </Container>
                 </div>
               </div>
             ))}
@@ -640,36 +636,6 @@ const { register, handleSubmit, watch } = useForm<FormData>();
       </div>
 
 
-
-
-      {/* FAQ Section */}
-      <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-12 text-center">
-          Frequently Asked <span className="text-[#c3ea00]">Questions</span>
-        </h2>
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <MagicCard
-              key={index}
-              gradientFrom="#c4ea00"
-              gradientTo="#c4ea00"
-              gradientColor="rgba(196, 234, 0, 0.1)"
-              className="p-4 lg:p-8 w-full overflow-hidden bg-[#1a1a1a] rounded-xl"
-            >
-              <details className="group">
-                <summary className="flex justify-between items-center cursor-pointer list-none">
-                  <h3 className="text-xl font-semibold">{faq.question}</h3>
-                  <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
-                </summary>
-                <p className="mt-4 text-gray-400 leading-relaxed">{faq.answer}</p>
-              </details>
-            </MagicCard>
-          ))}
-        </div>
-      </div>
-    </div>
-
       {/* Security Section */}
        {/* <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -704,7 +670,7 @@ const { register, handleSubmit, watch } = useForm<FormData>();
 
     
       {/* Live Demo Section */}
-      <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
+      {/* <div className="py-20 bg-[#0a0a0a] relative overflow-hidden">
      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
        <div className="text-center mb-16">
          <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-12">
@@ -741,7 +707,52 @@ const { register, handleSubmit, watch } = useForm<FormData>();
          ))}
        </div>
      </div>
-   </div>
+   </div> */}
+   <AppDemoSection/>
+
+
+   {/* FAQ Section */}
+   <div className="bg-[#0a0a0a] relative overflow-hidden">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
+      <div className="grid lg:grid-cols-2 gap-10">
+       <Container>
+        <div className="flex gap-10 flex-col">
+          <div className="flex gap-4 flex-col">
+            <div>
+              <Badge className="text-gray-900 bg-[#c4ea00]">FAQ</Badge>
+            </div>
+            <div className="flex gap-2 flex-col">
+              <h4 className="text-3xl md:text-5xl tracking-tighter max-w-xl text-left font-medium">
+                Frequently Asked Questions
+              </h4>
+              <p className="text-lg max-w-xl lg:max-w-lg leading-relaxed tracking-tight text-muted-foreground text-left">
+                Have any questions about our services? Browse through our FAQs or reach out to us for more details.
+              </p>
+            </div>
+            <div>
+              <Link href='/contact-us'>
+              <Button className="gap-4 bg-[#c4ea00] text-gray-900" variant="outline">
+                Any questions? Reach out <PhoneCall className="w-4 h-4" />
+              </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        </Container>
+        <Container delay={0.4}>
+        <Accordion type="single" collapsible className="w-full">
+          {faqData.map((faq, index) => (
+            <AccordionItem key={index} value={`faq-${index}`}>
+              <AccordionTrigger>{faq.question}</AccordionTrigger>
+              <AccordionContent>{faq.answer}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+        </Container>
+      </div>
+    </div>
+  </div>
+
     </div>
   );
 }

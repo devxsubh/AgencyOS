@@ -1,12 +1,13 @@
 "use client"
 
 import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   Bot, Zap, LineChart, Users, MessageSquare, Rocket, 
   CheckCircle2, ArrowRight, Building2, Brain,
   BarChart4, Target, Settings, RefreshCw,
   PiggyBank, GraduationCap, ShoppingBag, Home, Car,
-  ArrowRightIcon,
+  ArrowRightIcon, BarChart3, ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
@@ -16,6 +17,19 @@ import Image from "next/image";
 import { MagicCard } from '../ui/magic-card';
 import { Connect } from './Industry';
 import { FeatureStepsDemo } from './Why';
+import { motion } from "framer-motion"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+
+
+// Add Price type definition
+type Price = {
+  serviceType: string;
+  price: string;
+  name: string;
+  description: string;
+  features: string[];
+};
 
 function Automation() {
   const features = [
@@ -98,53 +112,28 @@ function Automation() {
     },
   ];
 
-  const packages = [
-    {
-      name: "Starter",
-      price: "₹39,999",
-      description: "Perfect for small businesses & startups needing leads & Automation setup",
-      features: [
-        "₹50K Ad Spend Management",
-        "Basic Automation Setup",
-        "Lead Nurturing (WhatsApp + Email)",
-        "Basic Appointment Scheduling",
-        "12 Posts/Month",
-        "On-Page SEO",
-        "5 Workflows"
-      ],
-      highlighted: false
-    },
-    {
-      name: "Growth",
-      price: "₹74,999",
-      description: "Ideal for scaling businesses that need automation & retargeting",
-      features: [
-        "₹1L Ad Spend Management + Retargeting",
-        "Advanced Automation with AI Chatbots",
-        "AI-Driven Follow-ups",
-        "Automated Reminders",
-        "20 Posts/Month + Engagement",
-        "Advanced SEO + 10 Blogs/Month",
-        "15 Workflows + API Integrations"
-      ],
-      highlighted: true
-    },
-    {
-      name: "Elite",
-      price: "₹1,29,999",
-      description: "For enterprises seeking fully automated AI-driven growth",
-      features: [
-        "₹2L Ad Spend Management + AI Optimization",
-        "Full Automation + Custom Portal",
-        "Multi-Touch AI Lead Conversion",
-        "AI-Based Smart Rescheduling",
-        "30 Posts/Month + Influencer Collabs",
-        "AI-Powered SEO + 20 Blogs/Month",
-        "Unlimited AI Process Automation"
-      ],
-      highlighted: false
-    }
-  ];
+  const [pricingPlans, setPricingPlans] = useState<Price[]>([]);
+
+useEffect(() => {
+  const fetchPricingPlans = async () => {
+    try {
+      const response = await fetch('/api/prices');
+      const data = await response.json();
+      setPricingPlans(data.prices
+        .filter((data: Price) => data.serviceType === 'automation')
+        .sort((a: Price, b: Price) => {
+          const priceA = Number(a.price.replace(/[^\d]/g, ""));
+          const priceB = Number(b.price.replace(/[^\d]/g, ""));
+          return priceA - priceB;
+        })
+      );
+    } catch (error) {
+      console.error('Error fetching pricing plans:', error);
+    };
+  };
+
+  fetchPricingPlans();
+}, []);
 
   const industries = [
     {
@@ -178,6 +167,12 @@ function Automation() {
       description: "Improve client acquisition and retention with smart automation"
     }
   ];
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
+
 
   return (
     <div className="min-h-screen">
@@ -438,35 +433,36 @@ function Automation() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {packages.map((pkg, index) => (
+          {pricingPlans.map((plan, index) => (
               <div key={index} className="group cursor-pointer">
                 <div className={`relative rounded-2xl p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#c3ea00]/10 ${
-                  pkg.highlighted ? 'bg-gradient-to-br from-[#c3ea00]/20 to-[#1a1a1a]' : 'bg-[#1a1a1a]'
+                  plan.name === "Growth" ? 'bg-gradient-to-br from-[#c3ea00]/20 to-[#1a1a1a]' : 'bg-[#1a1a1a]'
                 }`}>
-                  {pkg.highlighted && (
+                  {plan.name === "Growth" && (
                     <div className="absolute top-0 right-0 bg-[#c3ea00] text-black px-4 py-1 rounded-bl-xl">
                       Popular
                     </div>
                   )}
-                  <h3 className="text-3xl font-bold text-white mb-4">{pkg.name}</h3>
+                  <h3 className="text-3xl font-bold text-white mb-4">{plan.name}</h3>
                   <div className="flex items-baseline mb-8">
-                    <span className="text-4xl font-bold text-[#c3ea00]">{pkg.price}</span>
-                    <span className="text-gray-400 ml-2">{pkg.price !== 'Custom' && '/month'}</span>
+                    <span className="text-4xl font-bold text-[#c3ea00]">{plan.price}</span>
                   </div>
+                  <p className="text-gray-400 mb-4">{plan.description}</p>
                   <ul className="space-y-4 mb-8">
-                    {pkg.features.map((feature, fIndex) => (
+                    {plan.features.map((feature, fIndex) => (
                       <li key={fIndex} className="flex items-center text-gray-300">
                         <CheckCircle2 className="w-5 h-5 text-[#c3ea00] mr-3" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <Button
-                    className="w-full bg-transparent hover:bg-[#c3ea00] text-[#c3ea00] hover:text-black border-2 border-[#c3ea00] transition-all duration-300"
-                  >
-                    Get Started
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
+                  <Container delay={0.25} className="z-20">
+                    <div className="flex items-center justify-center mt-6 gap-x-4">
+                        <Button size="lg" className="bg-[#C4EA00]">
+                        Choose {plan.name}
+                        </Button>
+                    </div>
+                  </Container>
                 </div>
               </div>
             ))}
@@ -515,64 +511,120 @@ function Automation() {
       {/* Live Demo Section */}
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Section Heading */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-              Experience{" "}
-              <span className="text-[#c3ea00]">AI-Powered Marketing Before You Invest</span>
-            </h2>
+
+        <div className="relative z-10 container mx-auto px-4 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl mx-auto text-center mb-16"
+        >
+          <Badge variant="outline" className="mb-6 px-4 py-1.5 border-[#c4ea00] text-[#c4ea00]">
+            NEXT-GEN MARKETING SOLUTIONS
+          </Badge>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+            Experience <span className="text-[#c4ea00]">AI-Powered Marketing</span> Before You Invest
+          </h1>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Discover how our cutting-edge AI technology can transform your marketing strategy, boost ROI, and deliver
+            measurable results without any upfront commitment.
+          </p>
+        </motion.div>
+
+        {/* Feature cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {[
+            {
+              title: "Interactive Automation Dashboard",
+              description:
+                "See AI-driven automation in action with our live interactive dashboard. Visualize real-time data and automation workflows.",
+              icon: <BarChart3 className="h-10 w-10 text-[#c4ea00]" />,
+              delay: 0.2,
+            },
+            {
+              title: "Live Ad Campaign Demo",
+              description:
+                "Understand how AI enhances ad performance through our guided demo showcasing real campaign optimizations and results.",
+              icon: <Zap className="h-10 w-10 text-[#c4ea00]" />,
+              delay: 0.4,
+            },
+            {
+              title: "One-on-One Strategy Call",
+              description:
+                "Discuss your business needs & AI solutions with our experts. Get personalized recommendations for your specific goals.",
+              icon: <Bot className="h-10 w-10 text-[#c4ea00]" />,
+              delay: 0.6,
+            },
+          ].map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+              transition={{ duration: 0.6, delay: feature.delay }}
+            >
+              <MagicCard
+                  gradientFrom="#c4ea00"
+                  gradientTo="#c4ea00"
+                  gradientColor="rgba(196, 234, 0, 0.1)"
+                  className="p-4 lg:p-8 w-full overflow-hidden bg-[#1a1a1a] rounded-xl"
+                  >
+                <CardHeader className="pb-2">
+                  <div className="mb-4">{feature.icon}</div>
+                  <CardTitle className="text-2xl font-bold">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-gray-400">
+                  <p>{feature.description}</p>
+                </CardContent>
+              </MagicCard>
+            </motion.div>
+          ))}
+        </div>
+
+
+
+        {/* Stats section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 40 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-5xl mx-auto"
+        >
+          {[
+            { value: "93%", label: "Increased ROI" },
+            { value: "2.5x", label: "Conversion Rate" },
+            { value: "60%", label: "Time Saved" },
+            { value: "24/7", label: "AI Optimization" },
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-5xl font-bold text-[#c4ea00] mb-2">{stat.value}</div>
+              <div className="text-gray-40 text-xl">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* CTA section */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.95 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <div className="bg-gradient-to-r from-[#111111] to-[#1a1a1a] p-8 rounded-2xl border border-[#333333]">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to see the power of AI marketing?</h2>
+            <p className="text-gray-400 mb-6">
+              Schedule a free demo today and discover how our AI solutions can transform your marketing strategy.
+            </p>
+            <div className="flex items-center justify-center mt-6 gap-x-4">
+            <Link href="/leadform" className="flex items-center gap-2 group">
+            <Button className="bg-[#c4ea00] hover:bg-[#a8e05a] text-black font-medium px-8 py-6 text-lg rounded-full">
+              Schedule Your Free Demo Today! <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            </Link>
+            </div>
           </div>
+        </motion.div>
 
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* CRM Dashboard */}
-            <MagicCard
-                      gradientFrom="#c4ea00"
-                      gradientTo="#c4ea00"
-                      gradientColor="rgba(196, 234, 0, 0.1)"
-                      className="p-4 lg:p-8 w-full overflow-hidden bg-[#1a1a1a] rounded-xl"
-                    >
-
-              <h3 className="text-xl font-semibold text-white mb-4">Interactive Automation Dashboard</h3>
-              <p className="text-gray-400">See AI-driven automation in action.</p>
-            </MagicCard>
-
-            {/* Live Ad Campaign Demo */}
-            <MagicCard
-                      gradientFrom="#c4ea00"
-                      gradientTo="#c4ea00"
-                      gradientColor="rgba(196, 234, 0, 0.1)"
-                      className="p-4 lg:p-8 w-full overflow-hidden bg-[#1a1a1a] rounded-xl"
-                    >
-              <h3 className="text-xl font-semibold text-white mb-4">Live Ad Campaign Demo</h3>
-              <p className="text-gray-400">Understand how AI enhances ad performance.</p>
-            </MagicCard>
-
-            {/* Strategy Call */}
-            <MagicCard
-                      gradientFrom="#c4ea00"
-                      gradientTo="#c4ea00"
-                      gradientColor="rgba(196, 234, 0, 0.1)"
-                      className="p-4 lg:p-8 w-full overflow-hidden bg-[#1a1a1a] rounded-xl"
-                    >
-              <h3 className="text-xl font-semibold text-white mb-4">One-on-One Strategy Call</h3>
-              <p className="text-gray-400">Discuss your business needs & AI solutions.</p>
-            </MagicCard>
-            
-          </div>
-
-          <Container delay={0.25} className="z-20 mt-16">
-                <div className="flex items-center justify-center mt-6 gap-x-4">
-                    <Link href="/leadform" className="flex items-center gap-2 group">
-                        <Button size="lg" className="bg-[#C4EA00]">
-                        Schedule Your Free Demo Today!
-                            <ArrowRightIcon className="size-4 group-hover:translate-x-1 transition-all duration-300" />
-                        </Button>
-                    </Link>
-                </div>
-            </Container>
+        </div>
         </div>
       </div>
     </div>

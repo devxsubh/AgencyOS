@@ -31,7 +31,7 @@ export function FeatureStepsDemo() {
   return (
       <FeatureSteps 
         features={features}
-        autoPlayInterval={4000}
+        autoPlayInterval={2000}
         imageHeight="h-[500px]"
       />
   )

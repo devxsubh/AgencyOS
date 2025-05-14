@@ -12,10 +12,21 @@ const Navbar = () => {
             <Wrapper className="h-full">
                 <div className="flex items-center justify-between h-full">
                     <div className="flex items-center">
+                            {/* <video
+                              autoPlay
+                              muted
+                              playsInline
+                              style={{ width: '55px', height: 'auto' }}
+                            >
+                              <source src="/icons/Logo-1-[remix] (1).mp4" type="video/mp4" />
+                              Your browser does not support the video tag.
+                            </video> */}
                         <Link href="/" className="flex items-center gap-2">
                             {/* <Icons.icon className="w-6" /> */}
+                            
+
                             <Image
-                            src="/icons/icon.avif"
+                            src="/icons/wonder logo png.png"
                             alt="Vetra logo"
                             width={24}
                             height={24}

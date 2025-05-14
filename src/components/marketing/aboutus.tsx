@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card"
 import Image from "next/image"
 import Container from "../global/container"
 import { NumberTicker } from "../ui/number-ticker"
+import { BorderBeam } from "../magicui/border-beam"
+
 
 export default function AboutUs() {
   return (
@@ -69,13 +71,25 @@ export default function AboutUs() {
 
                 {/* Background Overlay */}
                 <div
-                  className="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-black opacity-75"
+                  className="absolute inset-0 z-0"
                   style={{
-                    backgroundImage:
-                    // https://miro.medium.com/v2/resize:fit:1000/1*djOWBfUNhFUPeDHchV9cEQ.jpeg
-                    "url('https://miro.medium.com/v2/resize:fit:1000/1*djOWBfUNhFUPeDHchV9cEQ.jpeg')",
+                    backgroundImage: "url('https://miro.medium.com/v2/resize:fit:1000/1*djOWBfUNhFUPeDHchV9cEQ.jpeg')",
+                    opacity: 0.3,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
                   }}
                 />
+                <BorderBeam
+                duration={6}
+                size={400}
+                className="from-transparent via-[#c4ea00] to-transparent"
+              />
+              <BorderBeam
+                duration={6}
+                delay={3}
+                size={400}
+                className="from-transparent via-[#c4ea00] to-transparent"
+              />
               </div>
             </Card>
           </div>

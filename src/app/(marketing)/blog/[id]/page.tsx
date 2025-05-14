@@ -1,60 +1,78 @@
-"use client";
+import BlogDetail from '../../../../components/blog/BlogDetail';
+import { Metadata } from 'next';
+import { connectDB } from '@/utils/database';
+import Blog from '@/models/Blog';
 
-import { useParams, notFound } from "next/navigation";
-import { blogPosts } from "@/constants/blog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-export default function BlogPostPage() {
-  const params = useParams(); 
-  const post = blogPosts.find((post) => post.id === params.id);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  await connectDB();
+  const blog = await Blog.findById(id);
 
-  if (!post) {
-    notFound();
+  if (!blog) {
+    return {
+      title: 'Blog Not Found | Wonder Creative Studios',
+      description: 'The requested blog post could not be found.'
+    };
   }
 
-  return (
-    <article className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <div className="flex items-center gap-4 mb-6">
-            <Badge>{post.category}</Badge>
-            <time className="text-sm text-muted-foreground">
-              {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            {post.title}
-          </h1>
-          <div className="flex items-center gap-3">
-            <Avatar>
-              <AvatarImage src="/icons/icon.avif" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="font-medium">{post.author}</p>
-              <p className="text-sm text-muted-foreground">Author</p>
-            </div>
-          </div>
-        </div>
+  const excerpt = blog.content.slice(0, 155) + '...';
 
-        <div className="aspect-video w-full mb-10">
-          <img
-            src={post.imageUrl}
-            alt={post.title}
-            className="rounded-lg object-cover w-full h-full"
-          />
-        </div>
+  return {
+    title: `${blog.title} | Wonder Creative Studios`,
+    description: excerpt,
+    openGraph: {
+      title: blog.title,
+      description: excerpt,
+      type: 'article',
+      url: `https://wondercreativestudios.com/blog/${blog._id}`,
+      siteName: 'Wonder Creative Studios',
+      images: [
+        {
+          url: blog.thumbnail,
+          width: 1200,
+          height: 630,
+          alt: blog.title
+        }
+      ],
+      publishedTime: blog.createdAt,
+      modifiedTime: blog.updatedAt,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: blog.title,
+      description: excerpt,
+      images: [blog.thumbnail]
+    },
+    alternates: {
+      canonical: `https://wondercreativestudios.com/blog/${blog._id}`
+    }
+  };
+}
 
-        <div
-          className="prose prose-lg dark:prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-      </div>
-    </article>
-  );
+export default async function Page({ params, searchParams }: Props) {
+  const { id } = await params;
+  const searchParamsData = await searchParams;
+  await connectDB();
+  const blog = await Blog.findById(id);
+
+  if (!blog) {
+    return <div>Blog not found</div>;
+  }
+
+  // Convert Mongoose document to plain object
+  const plainBlog = {
+    _id: blog._id.toString(),
+    title: blog.title,
+    content: blog.content,
+    thumbnail: blog.thumbnail,
+    createdAt: blog.createdAt.toISOString(),
+    updatedAt: blog.updatedAt?.toISOString()
+  };
+
+  return <BlogDetail blog={plainBlog} />;
 }

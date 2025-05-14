@@ -99,16 +99,7 @@ export const templates : Template[] = [
       categories: ["branding"],
       link: "/images/project/original-f8c9eb4b3cfa90e7584071bf8085c5e0.webp",
     },
-    {
-      title: "Subham Portfolio",
-      description: "A no code Framer portfolio website, Showcase you work",
-      image:
-        "/images/project/Subham.png",
-      author: "Wonder",
-      categories: ["website","portfolio"],
-      link: "https://diligent-provide-720169.framer.app/",
-    },
-    {
+   {
       title: "AI Note taking app",
       description: "A Notion-like collaborative note-taking application",
       image:

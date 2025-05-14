@@ -136,12 +136,12 @@ export const generateMetadata = ({
   icons = [
     {
       rel: "icon",
-      url: "/icons/icon-dark.avif",
+      url: "/icons/wonder logo png.png",
       media: "(prefers-color-scheme: light)",
     },
     {
       rel: "icon",
-      url: "/icons/icon.avif",
+      url: "/icons/wonder logo png.png",
       media: "(prefers-color-scheme: dark)",
     },
   ],
