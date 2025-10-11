@@ -2,6 +2,7 @@
 
 ## 📋 Table of Contents
 - [Project Overview](#project-overview)
+- [Complete Documentation Suite](#complete-documentation-suite)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Environment Setup](#environment-setup)
@@ -16,6 +17,30 @@
 - [Deployment](#deployment)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
+
+---
+
+## 📚 Complete Documentation Suite
+
+This project includes comprehensive documentation for easy handover and development:
+
+| Document | Description | Use When |
+|----------|-------------|----------|
+| **[README.md](./README.md)** (This file) | Main project documentation, setup guide, and overview | Getting started with the project |
+| **[DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)** | Documentation index and learning path | Finding specific documentation |
+| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | System architecture, design patterns, and diagrams | Understanding system design |
+| **[API.md](./API.md)** | Complete API documentation with examples | Working with APIs |
+| **[ERD.md](./ERD.md)** | Database schema and data models | Understanding database structure |
+| **[CHANGELOG.md](./CHANGELOG.md)** | Version history and release notes | Checking what changed |
+| **[ADR.md](./ADR.md)** | Architectural Decision Records | Understanding why decisions were made |
+| **[env.example](./env.example)** | Environment variables template | Setting up environment |
+
+**Quick Navigation:**
+- 🆕 **New to the project?** Start with this README, then check [DOCUMENTATION_INDEX.md](./DOCUMENTATION_INDEX.md)
+- 🔌 **Working with APIs?** See [API.md](./API.md)
+- 🗄️ **Database work?** Check [ERD.md](./ERD.md)
+- 🏗️ **Architecture questions?** Read [ARCHITECTURE.md](./ARCHITECTURE.md)
+- ⚙️ **Setup issues?** Review [env.example](./env.example)
 
 ## 🎯 Project Overview
 
