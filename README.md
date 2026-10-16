@@ -1,4 +1,4 @@
-# Wonder Creative Studios - Next.js Project
+# AgencyOS - Next.js Project
 
 ## 📋 Table of Contents
 - [Project Overview](#project-overview)
