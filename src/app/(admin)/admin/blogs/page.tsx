@@ -19,7 +19,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { motion } from "framer-motion"
-import { Loader2, PlusCircle, FileText, Upload, ImageIcon, RefreshCw } from "lucide-react"
+import { Loader2, PlusCircle, FileText, Upload, ImageIcon } from "lucide-react"
 
 interface Blog {
   _id: string
@@ -39,7 +39,6 @@ export default function GenerateBlogs() {
   const [topic, setTopic] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [preview, setPreview] = useState<BlogPreview | null>(null)
-  const [imagePrompt, setImagePrompt] = useState("")
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Custom blog state
@@ -70,45 +69,12 @@ export default function GenerateBlogs() {
           content: data.blog.content,
           thumbnail: data.blog.thumbnail,
         })
-        setImagePrompt(`Generate a thumbnail image for a blog post about ${topic}`)
       } else {
         throw new Error(data.error || "Failed to generate blog")
       }
     } catch (error) {
       console.error("Error:", error)
       alert("Failed to generate blog. Please try again.")
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  // Update the handleGenerateImage function
-  const handleGenerateImage = async () => {
-    try {
-      setIsLoading(true)
-      const response = await fetch("/api/blogs/generate-image", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt: imagePrompt }),
-      })
-
-      const data = await response.json()
-      if (data.success) {
-        if (preview) {
-          setPreview({ ...preview, thumbnail: data.imageUrl })
-        } else if (selectedBlog) {
-          setSelectedBlog({ ...selectedBlog, thumbnail: data.imageUrl })
-        } else {
-          setCustomThumbnail(data.imageUrl)
-        }
-      } else {
-        throw new Error(data.error || "Failed to generate image")
-      }
-    } catch (error) {
-      console.error("Error:", error)
-      alert("Failed to generate image. Please try again.")
     } finally {
       setIsLoading(false)
     }
@@ -371,30 +337,6 @@ export default function GenerateBlogs() {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                            <ImageIcon className="h-4 w-4 text-[#c3ea00]" /> Image Generation Prompt
-                          </label>
-                          <div className="flex gap-2">
-                            <Input
-                              value={imagePrompt}
-                              onChange={(e) => setImagePrompt(e.target.value)}
-                              disabled={isLoading}
-                              className="bg-gray-800 border-gray-700"
-                            />
-                            <Button
-                              onClick={handleGenerateImage}
-                              disabled={isLoading}
-                              variant="outline"
-                              className="border-gray-700 hover:bg-gray-800 whitespace-nowrap"
-                            >
-                              {isLoading ? (
-                                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                              ) : (
-                                <RefreshCw className="h-4 w-4 mr-2" />
-                              )}
-                              Generate Image
-                            </Button>
-                          </div>
                           <Button
                             onClick={() => fileInputRef.current?.click()}
                             disabled={isLoading}
@@ -487,28 +429,6 @@ export default function GenerateBlogs() {
                           </div>
                         )}
                         <div className="space-y-2">
-                          <div className="flex gap-2">
-                            <Input
-                              value={imagePrompt}
-                              onChange={(e) => setImagePrompt(e.target.value)}
-                              placeholder="Enter image generation prompt..."
-                              disabled={isLoading}
-                              className="bg-gray-800 border-gray-700"
-                            />
-                            <Button
-                              onClick={handleGenerateImage}
-                              disabled={isLoading}
-                              variant="outline"
-                              className="border-gray-700 hover:bg-gray-800 whitespace-nowrap"
-                            >
-                              {isLoading ? (
-                                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                              ) : (
-                                <RefreshCw className="h-4 w-4 mr-2" />
-                              )}
-                              Generate Image
-                            </Button>
-                          </div>
                           <Button
                             onClick={() => fileInputRef.current?.click()}
                             disabled={isLoading}
@@ -666,7 +586,6 @@ export default function GenerateBlogs() {
             if (!open) {
               setSelectedBlog(null)
               setIsEditing(false)
-              setImagePrompt("")
             }
           }}
         >
@@ -721,28 +640,6 @@ export default function GenerateBlogs() {
                   />
                 </div>
                 <div className="space-y-3">
-                  <div className="flex gap-2">
-                    <Input
-                      value={imagePrompt}
-                      onChange={(e) => setImagePrompt(e.target.value)}
-                      placeholder="Enter image generation prompt..."
-                      disabled={isLoading}
-                      className="bg-gray-800 border-gray-700"
-                    />
-                    <Button
-                      onClick={handleGenerateImage}
-                      disabled={isLoading || !imagePrompt.trim()}
-                      variant="outline"
-                      className="whitespace-nowrap border-gray-700 hover:bg-gray-800"
-                    >
-                      {isLoading ? (
-                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      ) : (
-                        <RefreshCw className="h-4 w-4 mr-2" />
-                      )}
-                      Generate Image
-                    </Button>
-                  </div>
                   <Button
                     onClick={() => fileInputRef.current?.click()}
                     disabled={isLoading}
@@ -760,7 +657,6 @@ export default function GenerateBlogs() {
                   onClick={() => {
                     setSelectedBlog(null)
                     setIsEditing(false)
-                    setImagePrompt("")
                   }}
                   variant="outline"
                   disabled={isLoading}

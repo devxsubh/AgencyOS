@@ -79,7 +79,7 @@
 
 - [ ] **External Services**
   - [ ] Cloudinary account access
-  - [ ] OpenAI API key obtained
+  - [ ] Gemini API key obtained
   - [ ] Google Analytics access (if needed)
   - [ ] Vercel account access (for deployment)
 
@@ -106,9 +106,8 @@
   
 - [ ] **External Services**
   - [ ] Cloudinary console access
-  - [ ] OpenAI account access
+  - [ ] Google AI Studio account access
   - [ ] Google Analytics access
-  - [ ] Meta Pixel access (if used)
 
 ### Admin Credentials
 

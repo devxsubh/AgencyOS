@@ -370,7 +370,7 @@ const chatSchema = new mongoose.Schema({
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
 | `_id` | ObjectId | Auto | - | Unique identifier |
-| `systemPrompt` | String | Yes | - | System prompt for OpenAI |
+| `systemPrompt` | String | Yes | - | System prompt for the chatbot |
 | `createdAt` | Date | Auto | Date.now | Creation timestamp |
 | `updatedAt` | Date | Auto | Date.now | Last update timestamp |
 
@@ -519,10 +519,10 @@ POST /api/chatbot
     │       ▼
     │   chatbotconfigs.findOne().sort({ updatedAt: -1 })
     │
-    ├─► Call OpenAI API
+    ├─► Call Gemini API
     │       │
     │       ▼
-    │   GPT-4 Response
+    │   Gemini Response
     │
     └─► Save conversation
             │

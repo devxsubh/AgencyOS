@@ -304,7 +304,7 @@ curl -X DELETE https://yourdomain.com/api/blogs/6581234567890abcdef12345
 
 ### 6. Generate Blog Content (AI)
 
-Generates blog content using OpenAI. (Admin only)
+Generates blog content using Gemini. (Admin only)
 
 **Endpoint:** `POST /api/blogs/generate`
 
@@ -774,7 +774,7 @@ curl -X POST https://yourdomain.com/api/chatbot \
 **Notes:**
 - Session ID is managed via cookies (`chat_session_id`)
 - Messages are stored in database for history
-- Uses OpenAI GPT-4 for responses
+- Uses Gemini for responses
 - System prompt configured in database
 
 ---

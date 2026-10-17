@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Loader2, Bot, Key, Globe, Mail } from "lucide-react"
+import { Loader2, Bot, Globe, Mail } from "lucide-react"
 
 export default function SettingsPage() {
   const { toast } = useToast()
@@ -113,13 +113,6 @@ export default function SettingsPage() {
             <Bot className="w-4 h-4" />
             Chatbot
           </TabsTrigger>
-          <TabsTrigger
-            value="api"
-            className="flex items-center gap-2 data-[state=active]:bg-gray-700 data-[state=active]:text-white"
-          >
-            <Key className="w-4 h-4" />
-            API Keys
-          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="space-y-6">
@@ -181,33 +174,6 @@ export default function SettingsPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="api" className="space-y-6">
-          <Card className="bg-gray-800 border-gray-700">
-            <CardHeader>
-              <CardTitle className="text-white">API Configuration</CardTitle>
-              <CardDescription className="text-gray-400">
-                Manage your API keys and integrations
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-300">OpenAI API Key</label>
-                <Input
-                  type="password"
-                  placeholder="sk-..."
-                  className="bg-gray-900 border-gray-700"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-300">Cloudinary Cloud Name</label>
-                <Input
-                  placeholder="your-cloud-name"
-                  className="bg-gray-900 border-gray-700"
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
       </Tabs>
     </div>
   )

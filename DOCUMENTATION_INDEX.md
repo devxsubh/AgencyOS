@@ -196,7 +196,7 @@ Wonder Creative Studios Documentation
 - [ ] Learn form handling patterns
 
 **Day 6-7: Advanced Features**
-- [ ] AI integration (OpenAI)
+- [ ] AI integration (Gemini)
 - [ ] Image management (Cloudinary)
 - [ ] Analytics integration
 - [ ] Chatbot functionality
@@ -392,7 +392,7 @@ Root Directory:
 - **Deployment:** Vercel dashboard
 - **Database:** MongoDB Atlas
 - **Media:** Cloudinary console
-- **AI:** OpenAI dashboard
+- **AI:** Google AI Studio
 - **Analytics:** Google Analytics
 
 ---

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/utils/database';
 import Chat from '@/models/Chat';
-import { getOpenAI } from '@/lib/openai';
+import { generateText } from '@/lib/gemini';
 import { cookies } from 'next/headers';
 import ChatbotConfig from '@/models/ChatbotConfig';
 import { clientIp, rateLimit } from '@/lib/rate-limit';
@@ -41,25 +41,18 @@ export async function POST(req: Request) {
     const config = await ChatbotConfig.findOne().sort({ updatedAt: -1 });
     const systemPrompt = config?.systemPrompt || 'You are a helpful assistant.';
 
-    const completion = await getOpenAI().chat.completions.create({
-      model: "gpt-4",
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: message }
-      ]
-    });
-
-    const reply = completion.choices[0].message?.content || 'Sorry, I could not generate a response.';
-
     // Find existing chat for this session or create new one
     let chat = await Chat.findOne({ sessionId });
-    
     if (!chat) {
-      chat = await Chat.create({
-        sessionId,
-        messages: []
-      });
+      chat = await Chat.create({ sessionId, messages: [] });
     }
+
+    // Send the last few turns so the bot keeps context
+    const history = chat.messages.slice(-10).map((m: { from: string; text: string }) => ({
+      role: m.from === 'user' ? ('user' as const) : ('model' as const),
+      text: m.text,
+    }));
+    const reply = await generateText(systemPrompt, [...history, { role: 'user', text: message }]);
 
     // Add new messages to the chat
     chat.messages.push(

@@ -72,10 +72,8 @@ Wonder Creative Studios is a comprehensive Next.js application that serves as bo
 
 ### External Services
 - **Cloudinary** - Image management
-- **OpenAI** - AI content generation
-- **Vercel KV** - Key-value storage
+- **Google Gemini** - Chatbot and blog generation (free tier)
 - **Google Analytics** - Analytics
-- **Meta Pixel** - Facebook tracking
 
 ### Development Tools
 - **ESLint** - Code linting
@@ -189,12 +187,10 @@ MONGODB_URI=mongodb://localhost:27017/wonder-creative-studios
 # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/wonder-creative-studios
 
 # Cloudinary (for image management)
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
 
-# OpenAI (for AI content generation)
-OPENAI_API_KEY=your_openai_api_key
+# Gemini (free key from https://aistudio.google.com/apikey)
+GEMINI_API_KEY=your_gemini_api_key
 
 # Admin Authentication
 ADMIN_USERNAME=admin@example.com
@@ -203,10 +199,6 @@ SESSION_SECRET=output_of_openssl_rand_-base64_48
 
 # Analytics
 NEXT_PUBLIC_GA_ID=G-GEYE331BP3
-
-# Vercel KV (optional, for caching)
-KV_REST_API_URL=your_kv_url
-KV_REST_API_TOKEN=your_kv_token
 ```
 
 ## 🚀 Installation & Setup
@@ -475,7 +467,7 @@ The marketing side is the public-facing website that showcases Wonder Creative S
 ## ✨ Key Features
 
 ### 1. AI-Powered Content Generation
-- Blog post generation using OpenAI
+- Blog post generation using Gemini
 - Image generation for blog thumbnails
 - Automated content creation
 
@@ -493,7 +485,6 @@ The marketing side is the public-facing website that showcases Wonder Creative S
 - Dynamic metadata generation
 - Structured data
 - Google Analytics integration
-- Meta Pixel for Facebook tracking
 
 ### 5. Interactive Elements
 - Floating chatbot
@@ -548,10 +539,8 @@ pnpm lint         # Run ESLint
 ### Environment Variables for Production
 ```env
 MONGODB_URI=your_production_mongodb_uri
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_API_SECRET=your_cloudinary_secret
-OPENAI_API_KEY=your_openai_key
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+GEMINI_API_KEY=your_gemini_key
 ADMIN_USERNAME=your_admin_email
 ADMIN_PASSWORD=your_secure_password
 SESSION_SECRET=output_of_openssl_rand_-base64_48

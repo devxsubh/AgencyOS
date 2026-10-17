@@ -94,9 +94,9 @@ Wonder Creative Studios is a full-stack Next.js application following a modern, 
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                       │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐             │
-│  │  Cloudinary  │  │    OpenAI    │  │  Vercel KV   │             │
-│  │    (CDN)     │  │    (AI)      │  │   (Cache)    │             │
-│  └──────────────┘  └──────────────┘  └──────────────┘             │
+│  │  Cloudinary  │  │    Gemini    │                                │
+│  │    (CDN)     │  │    (AI)      │                                │
+│  └──────────────┘  └──────────────┘                                │
 │                                                                       │
 │  ┌──────────────┐  ┌──────────────┐                                │
 │  │   Google     │  │   Meta       │                                │
@@ -390,8 +390,7 @@ Vercel Platform
 External Services
     ├── MongoDB Atlas (Database)
     ├── Cloudinary (Media)
-    ├── OpenAI (AI)
-    └── Vercel KV (Cache)
+    └── Gemini (AI)
 ```
 
 ---
@@ -438,15 +437,15 @@ External Services
    Client → Server → Cloudinary API → CDN URL → Database
    ```
 
-2. **OpenAI (AI Content)**
+2. **Gemini (AI Content)**
    ```
    Generate Flow:
-   Admin Request → API Route → OpenAI → Response → Save
+   Admin Request → API Route → Gemini → Response → Save
    ```
 
 3. **Analytics (Tracking)**
    ```
-   Page View → Google Analytics → Meta Pixel → Dashboard
+   Page View → Google Analytics → Dashboard
    ```
 
 ---
@@ -462,8 +461,8 @@ External Services
 | **Database** | MongoDB + Mongoose | Data Persistence |
 | **Authentication** | Cookie-based, Context API | User Auth |
 | **Media** | Cloudinary | Image Management |
-| **AI** | OpenAI GPT-4 | Content Generation |
-| **Analytics** | Google Analytics, Meta Pixel | User Tracking |
+| **AI** | Google Gemini | Chatbot, Content Generation |
+| **Analytics** | Google Analytics | User Tracking |
 | **Deployment** | Vercel | Hosting Platform |
 | **Package Manager** | pnpm | Dependency Management |
 
