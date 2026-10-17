@@ -20,7 +20,9 @@ export default function LoginPage() {
   const searchParams = useSearchParams()
   const { login } = useAuth()
 
-  const returnUrl = searchParams.get("returnUrl") || "/"
+  // Only follow same-site paths so the login page can't be used as an open redirect.
+  const requested = searchParams.get("returnUrl") || ""
+  const returnUrl = requested.startsWith("/") && !requested.startsWith("//") && !requested.startsWith("/\\") ? requested : "/admin"
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

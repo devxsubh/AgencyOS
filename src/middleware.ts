@@ -1,30 +1,39 @@
-// middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { SESSION_COOKIE, verifySessionToken } from '@/lib/auth';
 
-// Define which paths should be protected
-// This matches any path that starts with '/protected-group'
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/api/:path*'],
 };
 
-export function middleware(request: NextRequest) {
-  // Get the session token from cookies
-  const token = request.cookies.get('auth-token')?.value;
-  
-  // Get the current path
+// API endpoints that stay reachable without an admin session.
+// Everything else under /api is admin-only, except plain GETs of public content.
+const PUBLIC_API = new Set(['/api/auth/login', '/api/auth/logout', '/api/auth/session', '/api/chatbot']);
+const PUBLIC_READ_PREFIXES = ['/api/blogs', '/api/portfolios', '/api/prices'];
+
+function isPublicApi(pathname: string, method: string): boolean {
+  if (PUBLIC_API.has(pathname)) return true;
+  if (method !== 'GET' && method !== 'HEAD') return false;
+  // Generation endpoints are POST-only, so a GET prefix match never exposes them.
+  return PUBLIC_READ_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+}
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
-  // Check if user is authenticated
-  const isAuthenticated = token ? true : false; // In a real app, you'd validate the token
-  
-  // If not authenticated and trying to access protected routes
-  if (!isAuthenticated && pathname.startsWith('/admin')) {
-    // Redirect to login page with a return URL
-    const url = new URL('/login', request.url);
-    url.searchParams.set('returnUrl', pathname);
-    return NextResponse.redirect(url);
+  const isApi = pathname.startsWith('/api/');
+
+  if (isApi && isPublicApi(pathname, request.method)) {
+    return NextResponse.next();
   }
-  
-  return NextResponse.next();
+
+  const session = await verifySessionToken(request.cookies.get(SESSION_COOKIE)?.value);
+  if (session) return NextResponse.next();
+
+  if (isApi) {
+    return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const url = new URL('/login', request.url);
+  url.searchParams.set('returnUrl', pathname);
+  return NextResponse.redirect(url);
 }

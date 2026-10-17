@@ -1,8 +1,6 @@
 'use client'
 
 import type React from "react"
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from "next/link"
 import {
   FileText,
@@ -17,30 +15,16 @@ import LogoutButton from "@/components/admin/logout-button"
 import Image from "next/image"
 import { useAuth } from '../../contexts/AuthContext';
 
-async function AdminLayoutContent({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, loading, user, logout } = useAuth();
-  const router = useRouter();
+function AdminLayoutContent({ children }: { children: React.ReactNode }) {
+  const { loading } = useAuth();
 
-  useEffect(() => {
-    // If not authenticated and not loading, redirect to login
-    if (!loading && !isAuthenticated) {
-      router.push('/login?returnUrl=/protected-group');
-    }
-  }, [isAuthenticated, loading, router]);
-
-  // Show loading indicator while checking auth status
+  // Middleware already guards /admin; this only covers the initial session lookup
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
-  }
-
-  // If not authenticated, don't render anything
-  // (we'll redirect in the useEffect)
-  if (!isAuthenticated) {
-    return null;
   }
 
 

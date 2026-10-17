@@ -197,8 +197,9 @@ CLOUDINARY_API_SECRET=your_api_secret
 OPENAI_API_KEY=your_openai_api_key
 
 # Admin Authentication
-NEXT_PUBLIC_ADMIN_USERNAME=admin
-NEXT_PUBLIC_ADMIN_PASSWORD=your_secure_password
+ADMIN_USERNAME=admin@example.com
+ADMIN_PASSWORD=your_secure_password
+SESSION_SECRET=output_of_openssl_rand_-base64_48
 
 # Analytics
 NEXT_PUBLIC_GA_ID=G-GEYE331BP3
@@ -551,8 +552,9 @@ CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_key
 CLOUDINARY_API_SECRET=your_cloudinary_secret
 OPENAI_API_KEY=your_openai_key
-NEXT_PUBLIC_ADMIN_USERNAME=your_admin_username
-NEXT_PUBLIC_ADMIN_PASSWORD=your_secure_password
+ADMIN_USERNAME=your_admin_email
+ADMIN_PASSWORD=your_secure_password
+SESSION_SECRET=output_of_openssl_rand_-base64_48
 NEXT_PUBLIC_GA_ID=your_google_analytics_id
 ```
 

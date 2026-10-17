@@ -1,16 +1,15 @@
 import { NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { getOpenAI } from '@/lib/openai';
 import cloudinary from '@/utils/cloudinary';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
+    if (typeof prompt !== 'string' || !prompt.trim() || prompt.length > 1000) {
+      return NextResponse.json({ success: false, error: 'A prompt (max 1000 characters) is required' }, { status: 400 });
+    }
 
-    const imageResponse = await openai.images.generate({
+    const imageResponse = await getOpenAI().images.generate({
       model: 'dall-e-3', // Use better model
       prompt,
       n: 1,

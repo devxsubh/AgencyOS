@@ -1,30 +1,34 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/utils/database';
 import Chat from '@/models/Chat';
-import OpenAI from 'openai';
+import { getOpenAI } from '@/lib/openai';
 import { cookies } from 'next/headers';
-import { v4 as uuidv4 } from 'uuid';
 import ChatbotConfig from '@/models/ChatbotConfig';
+import { clientIp, rateLimit } from '@/lib/rate-limit';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const MAX_MESSAGE_LENGTH = 2000;
 
 export async function POST(req: Request) {
+  if (!rateLimit(`chatbot:${clientIp(req)}`, 20, 60 * 1000)) {
+    return NextResponse.json({ success: false, error: 'Too many messages. Please slow down.' }, { status: 429 });
+  }
+
   try {
-    await connectDB();
     const { message } = await req.json();
+    if (typeof message !== 'string' || !message.trim() || message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json({ success: false, error: 'Invalid message' }, { status: 400 });
+    }
+
+    await connectDB();
 
     // Get or create session ID from cookies
-    const cookieStore = cookies();
-    let sessionId = (await cookieStore).get('chat_session_id')?.value;
-    
+    const cookieStore = await cookies();
+    let sessionId = cookieStore.get('chat_session_id')?.value;
+
     if (!sessionId) {
-      sessionId = uuidv4();
+      sessionId = crypto.randomUUID();
       // Set session cookie that expires in 24 hours
-      (await
-        // Set session cookie that expires in 24 hours
-        cookieStore).set('chat_session_id', sessionId, {
+      cookieStore.set('chat_session_id', sessionId, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
@@ -37,7 +41,7 @@ export async function POST(req: Request) {
     const config = await ChatbotConfig.findOne().sort({ updatedAt: -1 });
     const systemPrompt = config?.systemPrompt || 'You are a helpful assistant.';
 
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: "gpt-4",
       messages: [
         { role: "system", content: systemPrompt },
@@ -67,6 +71,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, reply });
   } catch (error) {
     console.error('Error in chatbot API:', error);
-    return NextResponse.json({ success: false, error: 'Failed to process message' });
+    return NextResponse.json({ success: false, error: 'Failed to process message' }, { status: 500 });
   }
 }

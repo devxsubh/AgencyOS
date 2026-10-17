@@ -113,8 +113,8 @@
 ### Admin Credentials
 
 - [ ] **Admin Panel Login**
-  - [ ] Username received: `NEXT_PUBLIC_ADMIN_USERNAME`
-  - [ ] Password received: `NEXT_PUBLIC_ADMIN_PASSWORD`
+  - [ ] Username received: `ADMIN_USERNAME`
+  - [ ] Password received: `ADMIN_PASSWORD` (plus `SESSION_SECRET`)
   - [ ] Can log in to /admin
   - [ ] All admin features accessible
 

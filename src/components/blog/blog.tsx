@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
-import GenerateButton from "./GenerateButton";
 
 interface BlogPost {
   _id: string;

@@ -202,7 +202,7 @@ Models (Mongoose) → API Routes → Frontend
      │                                           │ 3. Set Cookie
      │          4. Cookie Set                    ▼
      │ <────────────────────────── ┌─────────────────────────┐
-     │                              │   js-cookie             │
+     │                              │   httpOnly session      │
      │                              │   auth-token            │
      │                              └─────────────────────────┘
      │

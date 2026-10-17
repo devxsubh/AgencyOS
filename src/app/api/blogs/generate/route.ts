@@ -1,17 +1,16 @@
 import { NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import { getOpenAI } from '@/lib/openai';
 import cloudinary from '@/utils/cloudinary';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 export async function POST(req: Request) {
   try {
     const { topic } = await req.json();
+    if (typeof topic !== 'string' || !topic.trim() || topic.length > 200) {
+      return NextResponse.json({ success: false, error: 'A topic (max 200 characters) is required' }, { status: 400 });
+    }
 
     // Generate blog content using OpenAI
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: 'gpt-4',
       messages: [
         {
@@ -31,7 +30,7 @@ export async function POST(req: Request) {
     }
 
     // Generate blog thumbnail image using DALL-E 3
-    const imageResponse = await openai.images.generate({
+    const imageResponse = await getOpenAI().images.generate({
       model: 'dall-e-3',
       prompt: `Create a highly engaging thumbnail image for a blog post about "${topic}".`,
       n: 1,

@@ -1,0 +1,7 @@
+allowBuilds:
+  sharp: true
+  unrs-resolver: false
+overrides:
+  # Next bundles an old postcss; force the patched release
+  postcss: ^8.5.23
+  postcss-selector-parser: ^7.1.6

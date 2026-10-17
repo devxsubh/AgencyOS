@@ -1,11 +1,8 @@
-// contexts/AuthContext.tsx
 "use client"
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
 
 interface User {
-  id: string;
   name: string;
   email: string;
 }
@@ -14,7 +11,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
   isAuthenticated: boolean;
 }
 
@@ -25,65 +22,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // The session lives in an httpOnly cookie, so ask the server who we are.
   useEffect(() => {
-    // Check if user is logged in on mount
-    const token = Cookies.get('auth-token');
-    if (token) {
-      // In a real app, you would validate the token with your backend
-      // For this example, we'll assume the token is valid and set a mock user
-      setUser({
-        id: '1',
-        name: 'Wonder',
-        email: 'wonder@example.com',
-      });
-    }
-    setLoading(false);
+    fetch('/api/auth/session')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setUser(data?.user ?? null))
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false));
   }, []);
 
   const login = async (email: string, password: string) => {
-    setLoading(true);
-    try {
-      // In a real app, you would send a request to your backend
-      // This is a mock implementation
-      if (email === `${process.env.NEXT_PUBLIC_ADMIN_USERNAME}` && password === `${process.env.NEXT_PUBLIC_ADMIN_PASSWORD}` ) {
-        // Set mock user data
-        const user = {
-          id: '1',
-          name: 'Wonder',
-          email: email,
-        };
-        
-        // Set cookie (in a real app, this would be a JWT token from your backend)
-        Cookies.set('auth-token', 'mock-jwt-token', { expires: 7 });
-        
-        setUser(user);
-        return;
-      }
-      throw new Error('Invalid credentials');
-    } catch (error) {
-      console.error('Login error:', error);
-      throw error;
-    } finally {
-      setLoading(false);
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data?.success) {
+      throw new Error(data?.error || 'Invalid credentials');
     }
+    setUser(data.user);
   };
 
-  const logout = () => {
-    Cookies.remove('auth-token');
+  const logout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
     setUser(null);
-    router.push('/login');
+    router.replace('/login');
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        logout,
-        isAuthenticated: !!user,
-      }}
-    >
+    <AuthContext.Provider value={{ user, loading, login, logout, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );
