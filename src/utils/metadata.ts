@@ -96,7 +96,7 @@
 //   return {
 //     metadataBase,
 //     title: {
-//       template: `%s | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+//       template: `%s | ${appName}`,
 //       default: title,
 //     },
 //     description,
@@ -200,7 +200,7 @@ export const generateMetadata = ({
     "Sales funnel optimization",
     "Creative agency for startups",
   ],
-  author = process.env.NEXT_PUBLIC_AUTHOR_NAME,
+  author = process.env.NEXT_PUBLIC_AUTHOR_NAME || "Wonder Creative Studios",
   type = "website",
   publishedTime,
 }: MetadataProps = {}): Metadata => {
@@ -209,17 +209,19 @@ export const generateMetadata = ({
       "https://nextjs-wondercreativestudios.vercel.app/"
   );
 
+  const appName = process.env.NEXT_PUBLIC_APP_NAME || "Wonder Creative Studios";
+
   const metadata: Metadata = {
     metadataBase,
     title: {
-      template: `%s | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+      template: `%s | ${appName}`,
       default: title,
     },
     description,
     keywords,
     authors: [{ name: author }],
     creator: author,
-    publisher: process.env.NEXT_PUBLIC_APP_NAME,
+    publisher: appName,
     formatDetection: {
       email: false,
       address: false,

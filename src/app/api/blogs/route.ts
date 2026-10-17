@@ -9,6 +9,6 @@ export async function GET() {
     return NextResponse.json({ success: true, blogs });
   } catch (error) {
     console.error('Error fetching blogs:', error);
-    return NextResponse.json({ success: false, error: 'Failed to fetch blogs' });
+    return NextResponse.json({ success: false, error: 'Failed to fetch blogs' }, { status: 503 });
   }
 }

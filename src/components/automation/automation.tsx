@@ -1,5 +1,6 @@
 "use client"
 
+import DataUnavailable from "@/components/global/data-unavailable";
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {
@@ -113,12 +114,14 @@ function Automation() {
   ];
 
   const [pricingPlans, setPricingPlans] = useState<Price[]>([]);
+  const [pricingLoaded, setPricingLoaded] = useState(false);
 
 useEffect(() => {
   const fetchPricingPlans = async () => {
     try {
       const response = await fetch('/api/prices');
       const data = await response.json();
+      if (!data.success) throw new Error(data.error || 'Failed to fetch prices');
       setPricingPlans(data.prices
         .filter((data: Price) => data.serviceType === 'automation')
         .sort((a: Price, b: Price) => {
@@ -129,6 +132,8 @@ useEffect(() => {
       );
     } catch (error) {
       console.error('Error fetching pricing plans:', error);
+    } finally {
+      setPricingLoaded(true);
     };
   };
 
@@ -433,6 +438,9 @@ useEffect(() => {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {pricingLoaded && pricingPlans.length === 0 && (
+            <DataUnavailable className="col-span-full py-10" message="Pricing is currently not available. Please check back soon." />
+          )}
           {pricingPlans.map((plan, index) => (
               <div key={index} className="group cursor-pointer">
                 <div className={`relative rounded-2xl p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#c3ea00]/10 ${

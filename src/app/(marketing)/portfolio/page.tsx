@@ -8,6 +8,7 @@ import Link from "next/link"
 import Image from "next/image"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import DataUnavailable from "@/components/global/data-unavailable"
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -43,6 +44,7 @@ export default function ProjectsPage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const panelsRef = useRef<(HTMLDivElement | null)[]>([])
   const [projects, setProjects] = useState<Project[]>([])
+  const [loadFailed, setLoadFailed] = useState(false)
 
   // Fetch projects from backend API
   useEffect(() => {
@@ -62,7 +64,7 @@ export default function ProjectsPage() {
 
         const data = await response.json()
         // Sort projects by displayOrder and createdAt
-        const sortedProjects = data.portfolios
+        const sortedProjects: Project[] = Array.isArray(data.portfolios) ? data.portfolios : []
 
         setProjects(sortedProjects)
         setVisibleProjects(sortedProjects)
@@ -70,6 +72,7 @@ export default function ProjectsPage() {
         console.error("Error fetching projects:", error)
         setProjects([])
         setVisibleProjects([])
+        setLoadFailed(true)
       }
     }
 
@@ -276,7 +279,9 @@ export default function ProjectsPage() {
             ))}
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {displayedProjects.length === 0 ? (
+            {loadFailed ? (
+              <DataUnavailable className="col-span-full" message="Portfolio data is currently not available. Please check back soon." />
+            ) : displayedProjects.length === 0 ? (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

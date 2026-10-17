@@ -2,6 +2,7 @@ import BlogDetail from '../../../../components/blog/BlogDetail';
 import { Metadata } from 'next';
 import { connectDB } from '@/utils/database';
 import Blog from '@/models/Blog';
+import DataUnavailable from '@/components/global/data-unavailable';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -10,8 +11,13 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  await connectDB();
-  const blog = await Blog.findById(id);
+  let blog;
+  try {
+    await connectDB();
+    blog = await Blog.findById(id);
+  } catch {
+    return { title: 'Blog | Wonder Creative Studios' };
+  }
 
   if (!blog) {
     return {
@@ -57,8 +63,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params, searchParams }: Props) {
   const { id } = await params;
   const searchParamsData = await searchParams;
-  await connectDB();
-  const blog = await Blog.findById(id);
+  let blog;
+  try {
+    await connectDB();
+    blog = await Blog.findById(id);
+  } catch (error) {
+    console.error('Error loading blog:', error);
+    return <DataUnavailable message="This article is currently not available. Please check back soon." className="min-h-[60vh] pt-40" />;
+  }
 
   if (!blog) {
     return <div>Blog not found</div>;

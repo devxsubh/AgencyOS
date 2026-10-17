@@ -9,7 +9,7 @@ export async function GET() {
     return NextResponse.json({ success: true, prices });
   } catch (error) {
     console.error('Error fetching prices:', error);
-    return NextResponse.json({ success: false, error: 'Failed to fetch prices' });
+    return NextResponse.json({ success: false, error: 'Failed to fetch prices' }, { status: 503 });
   }
 }
 

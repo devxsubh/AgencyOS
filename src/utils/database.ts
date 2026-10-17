@@ -1,12 +1,11 @@
-import { connect } from 'mongoose';
+import mongoose from 'mongoose';
 
-const connectDB = async () => {
-    try {
-      await connect(process.env.MONGODB_URI!);
-    } catch (error) {
-      console.error('MongoDB connection error:', error);
-      throw error;
-    }
-  };
-
-  export { connectDB };
+export async function connectDB() {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error('MONGODB_URI is not configured');
+  }
+  // Reuse the existing connection between requests
+  if (mongoose.connection.readyState === 1) return;
+  await mongoose.connect(uri);
+}

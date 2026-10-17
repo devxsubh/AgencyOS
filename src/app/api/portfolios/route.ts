@@ -9,6 +9,6 @@ export async function GET() {
     return NextResponse.json({ success: true, portfolios });
   } catch (error) {
     console.error('Error fetching portfolios:', error);
-    return NextResponse.json({ success: false, error: 'Failed to fetch portfolios' });
+    return NextResponse.json({ success: false, error: 'Failed to fetch portfolios' }, { status: 503 });
   }
 }

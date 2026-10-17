@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
+import DataUnavailable from "@/components/global/data-unavailable";
 
 interface BlogPost {
   _id: string;
@@ -17,16 +18,17 @@ export const Blog = () => {
   const router = useRouter();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
 
   const fetchPosts = async () => {
     try {
       const response = await fetch('/api/blogs');
       const data = await response.json();
-      if (data.success) {
-        setPosts(data.blogs);
-      }
+      if (!data.success) throw new Error(data.error || 'Failed to fetch posts');
+      setPosts(data.blogs);
     } catch (error) {
       console.error('Error fetching posts:', error);
+      setFailed(true);
     } finally {
       setLoading(false);
     }
@@ -48,6 +50,7 @@ export const Blog = () => {
             Latest articles
           </h4>
         </div>
+        {failed && <DataUnavailable message="Articles are currently not available. Please check back soon." />}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {posts.map((post, index) => (
             <div
